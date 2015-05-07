@@ -2,41 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32cdf292-f7e0-4268-a018-2070f02daf22" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bilateral_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/canny_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dilation_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/erosion_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gauss_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laplace_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/median_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/morph_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smooth_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sobel_tab.ui" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bilateral.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bilateral_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/canny.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/canny_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dilation.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dilation_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/erosion.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/erosion_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gauss.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/gauss_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laplace.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/laplace_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/median.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/median_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/morph.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/morph_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smooth.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ressources/smooth.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/smooth_ui.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sobel.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sobel_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/empty_ui.py" afterPath="$PROJECT_DIR$/empty_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect.py" afterPath="$PROJECT_DIR$/sec_detect.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tab_ui_to_py.bat" afterPath="$PROJECT_DIR$/tab_ui_to_py.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thresh_ui.py" afterPath="$PROJECT_DIR$/thresh_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="section detector.iws" />
@@ -64,8 +29,8 @@
       <file leaf-file-name="sec_detect.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sec_detect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12142857" vertical-offset="204" max-vertical-offset="3791">
-              <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.6982143" vertical-offset="459" max-vertical-offset="3791">
+              <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
               <folding>
                 <element signature="e#45#67#0" expanded="true" />
               </folding>
@@ -118,6 +83,11 @@
     </leaf>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="SebLeh" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -406,6 +376,13 @@
       <option name="number" value="Default" />
       <updated>1430210767547</updated>
     </task>
+    <task id="LOCAL-00001" summary="built all hull classes for class-loader">
+      <created>1431006454351</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1431006454351</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -413,15 +390,16 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32997763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39932886" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -448,6 +426,8 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="built all hull classes for class-loader" />
+    <option name="LAST_COMMIT_MESSAGE" value="built all hull classes for class-loader" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -770,8 +750,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_detect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12142857" vertical-offset="204" max-vertical-offset="3791">
-          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.6982143" vertical-offset="459" max-vertical-offset="3791">
+          <caret line="50" column="61" selection-start-line="50" selection-start-column="61" selection-end-line="50" selection-end-column="61" />
           <folding>
             <element signature="e#45#67#0" expanded="true" />
           </folding>
