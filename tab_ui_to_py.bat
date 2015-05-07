@@ -1,0 +1,1 @@
+pyuic4 tab3.ui -o tab3_ui.py

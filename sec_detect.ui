@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>697</width>
+    <height>425</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Section Detector</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="GraphicsView" name="label">
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_1">
+       <attribute name="title">
+        <string>Display settings</string>
+       </attribute>
+       <widget class="QLabel" name="lbl_scale">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>20</y>
+          <width>46</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Scale:</string>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="scale">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>10</y>
+          <width>62</width>
+          <height>22</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <double>3.000000000000000</double>
+        </property>
+        <property name="singleStep">
+         <double>0.250000000000000</double>
+        </property>
+        <property name="value">
+         <double>0.500000000000000</double>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="cb_grey">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>70</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Greyscale</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>+</string>
+       </attribute>
+       <attribute name="toolTip">
+        <string>add new filter</string>
+       </attribute>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>697</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <widget class="QMenu" name="menuFilter_Settings">
+     <property name="title">
+      <string>Filter Settings</string>
+     </property>
+     <addaction name="actionSave_Settings"/>
+     <addaction name="actionLoad_settings"/>
+     <addaction name="separator"/>
+     <addaction name="actionRestore_Default"/>
+    </widget>
+    <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="menuFilter_Settings"/>
+   </widget>
+   <addaction name="menuFile"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset>
+     <normaloff>ressources/open_file-icon.gif</normaloff>ressources/open_file-icon.gif</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>open image file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave_Settings">
+   <property name="text">
+    <string>Save Settings</string>
+   </property>
+  </action>
+  <action name="actionLoad_settings">
+   <property name="text">
+    <string>Load settings</string>
+   </property>
+  </action>
+  <action name="actionRestore_Default">
+   <property name="text">
+    <string>Restore Default</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>GraphicsView</class>
+   <extends>QLabel</extends>
+   <header location="global">pyqtgraph</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
