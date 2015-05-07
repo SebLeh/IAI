@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sec_detect.ui'
 #
-# Created: Thu Apr 30 14:21:04 2015
+# Created: Thu May 07 10:42:56 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -37,6 +37,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.tabWidget = QtGui.QTabWidget(self.centralwidget)
         self.tabWidget.setMinimumSize(QtCore.QSize(300, 0))
+        self.tabWidget.setTabsClosable(False)
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.tab_1 = QtGui.QWidget()
         self.tab_1.setObjectName(_fromUtf8("tab_1"))
