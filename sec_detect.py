@@ -9,21 +9,20 @@ import PyQt4
 from PyQt4 import QtGui, QtCore
 from sec_detect_ui import Ui_MainWindow
 
-# from thresh_ui import Ui_thresh_tab
 from empty_ui import Ui_emptyTab
 
 possibleFilters = {
-    '1':{'text': 'Threshold',               'index': 1,     'module_name': 'thresh',        'class': 'Thresh_tab'},
-    '2':{'text': 'Image Smoothing',         'index': 2,     'module_name': 'smooth_ui',     'class': 'Ui_smooth_tab'},
-    '3':{'text': 'Gaussian Filter',         'index': 3,     'module_name': 'gauss_ui',      'class': 'Ui_gauss_tab'},
-    '4':{'text': 'Median Filter',           'index': 4,     'module_name': 'median_ui',     'class': 'Ui_median_tab'},
-    '5':{'text': 'Bilateral Filter',        'index': 5,     'module_name': 'bilateral_ui',  'class': 'Ui_bilateral_tab'},
-    '6':{'text': 'Erosion',                 'index': 6,     'module_name': 'erosion_ui',    'class': 'Ui_erosion_tab'},
-    '7':{'text': 'Dilation',                'index': 7,     'module_name': 'dilation_ui',   'class': 'Ui_dilation_tab'},
-    '8':{'text': 'Morphological Gradient',  'index': 8,     'module_name': 'morph_ui',      'class': 'Ui_morph_tab'},
-    '9':{'text': 'Sobel Operator',          'index': 9,     'module_name': 'sobel_ui',      'class': 'Ui_sobel_tab'},
-    '10':{'text': 'Laplace Derivate',       'index': 10,    'module_name': 'laplace_ui',    'class': 'Ui_laplace_tab'},
-    '11':{'text': 'Canny Edge Detection',   'index': 11,    'module_name': 'canny_ui',      'class': 'Ui_canny_tab'}
+    '1':{'text': 'Threshold',               'index': 1,     'module_name': 'thresh',     'class': 'Thresh_tab'},
+    '2':{'text': 'Image Smoothing',         'index': 2,     'module_name': 'smooth',     'class': 'Smooth_tab'},
+    '3':{'text': 'Gaussian Filter',         'index': 3,     'module_name': 'gauss',      'class': 'Gauss_tab'},
+    '4':{'text': 'Median Filter',           'index': 4,     'module_name': 'median',     'class': 'Median_tab'},
+    '5':{'text': 'Bilateral Filter',        'index': 5,     'module_name': 'bilateral',  'class': 'Bilateral_tab'},
+    '6':{'text': 'Erosion',                 'index': 6,     'module_name': 'erosion',    'class': 'Erosion_tab'},
+    '7':{'text': 'Dilation',                'index': 7,     'module_name': 'dilation',   'class': 'Dilation_tab'},
+    '8':{'text': 'Morphological Gradient',  'index': 8,     'module_name': 'morph',      'class': 'Morph_tab'},
+    '9':{'text': 'Sobel Operator',          'index': 9,     'module_name': 'sobel',      'class': 'Sobel_tab'},
+    '10':{'text': 'Laplace Derivate',       'index': 10,    'module_name': 'laplace',    'class': 'Laplace_tab'},
+    '11':{'text': 'Canny Edge Detection',   'index': 11,    'module_name': 'canny',      'class': 'Canny_tab'}
 }
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):

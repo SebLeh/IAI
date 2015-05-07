@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'empty_tab.ui'
+# Form implementation generated from reading ui file 'smooth_tab.ui'
 #
 # Created: Thu May 07 15:26:41 2015
 #      by: PyQt4 UI code generator 4.11.3
@@ -23,14 +23,14 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_emptyTab(object):
-    def setupUi(self, emptyTab):
-        emptyTab.setObjectName(_fromUtf8("emptyTab"))
-        emptyTab.resize(400, 300)
+class Ui_smooth(object):
+    def setupUi(self, smooth):
+        smooth.setObjectName(_fromUtf8("smooth"))
+        smooth.resize(400, 300)
 
-        self.retranslateUi(emptyTab)
-        QtCore.QMetaObject.connectSlotsByName(emptyTab)
+        self.retranslateUi(smooth)
+        QtCore.QMetaObject.connectSlotsByName(smooth)
 
-    def retranslateUi(self, emptyTab):
-        emptyTab.setWindowTitle(_translate("emptyTab", "Form", None))
+    def retranslateUi(self, smooth):
+        smooth.setWindowTitle(_translate("smooth", "Form", None))
 

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'empty_tab.ui'
+# Form implementation generated from reading ui file 'canny_tab.ui'
 #
-# Created: Thu May 07 15:26:41 2015
+# Created: Thu May 07 15:26:42 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,14 +23,14 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_emptyTab(object):
-    def setupUi(self, emptyTab):
-        emptyTab.setObjectName(_fromUtf8("emptyTab"))
-        emptyTab.resize(400, 300)
+class Ui_canny(object):
+    def setupUi(self, canny):
+        canny.setObjectName(_fromUtf8("canny"))
+        canny.resize(400, 300)
 
-        self.retranslateUi(emptyTab)
-        QtCore.QMetaObject.connectSlotsByName(emptyTab)
+        self.retranslateUi(canny)
+        QtCore.QMetaObject.connectSlotsByName(canny)
 
-    def retranslateUi(self, emptyTab):
-        emptyTab.setWindowTitle(_translate("emptyTab", "Form", None))
+    def retranslateUi(self, canny):
+        canny.setWindowTitle(_translate("canny", "Form", None))
 

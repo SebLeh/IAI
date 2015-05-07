@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'empty_tab.ui'
+# Form implementation generated from reading ui file 'sobel_tab.ui'
 #
-# Created: Thu May 07 15:26:41 2015
+# Created: Thu May 07 15:26:42 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,14 +23,14 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_emptyTab(object):
-    def setupUi(self, emptyTab):
-        emptyTab.setObjectName(_fromUtf8("emptyTab"))
-        emptyTab.resize(400, 300)
+class Ui_sobel(object):
+    def setupUi(self, sobel):
+        sobel.setObjectName(_fromUtf8("sobel"))
+        sobel.resize(400, 300)
 
-        self.retranslateUi(emptyTab)
-        QtCore.QMetaObject.connectSlotsByName(emptyTab)
+        self.retranslateUi(sobel)
+        QtCore.QMetaObject.connectSlotsByName(sobel)
 
-    def retranslateUi(self, emptyTab):
-        emptyTab.setWindowTitle(_translate("emptyTab", "Form", None))
+    def retranslateUi(self, sobel):
+        sobel.setWindowTitle(_translate("sobel", "Form", None))
 

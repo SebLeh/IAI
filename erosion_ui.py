@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'empty_tab.ui'
+# Form implementation generated from reading ui file 'erosion_tab.ui'
 #
-# Created: Thu May 07 15:26:41 2015
+# Created: Thu May 07 15:26:42 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,14 +23,14 @@ except AttributeError:
     def _translate(context, text, disambig):
         return QtGui.QApplication.translate(context, text, disambig)
 
-class Ui_emptyTab(object):
-    def setupUi(self, emptyTab):
-        emptyTab.setObjectName(_fromUtf8("emptyTab"))
-        emptyTab.resize(400, 300)
+class Ui_erosion(object):
+    def setupUi(self, erosion):
+        erosion.setObjectName(_fromUtf8("erosion"))
+        erosion.resize(400, 300)
 
-        self.retranslateUi(emptyTab)
-        QtCore.QMetaObject.connectSlotsByName(emptyTab)
+        self.retranslateUi(erosion)
+        QtCore.QMetaObject.connectSlotsByName(erosion)
 
-    def retranslateUi(self, emptyTab):
-        emptyTab.setWindowTitle(_translate("emptyTab", "Form", None))
+    def retranslateUi(self, erosion):
+        erosion.setWindowTitle(_translate("erosion", "Form", None))
 
