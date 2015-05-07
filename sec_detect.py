@@ -138,8 +138,6 @@ def main():
     app = QtGui.QApplication(sys.argv)
     mainWindow = MainWindow()
     mainWindow.show()
-    # if mainWindow.image != None:
-    #     mainWindow.updateImage()
 
     sys.exit(app.exec_())
 
