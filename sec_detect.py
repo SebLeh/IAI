@@ -27,6 +27,8 @@ possibleFilters = {
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
+    update = QtCore.pyqtSignal()
+
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self, parent)
 
@@ -40,16 +42,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.tabContextMenu = QtGui.QMenu()
 
-        # self.updateImageThread = ImageThread(self)
-        # self.ImageThreadRunning = True
-
         self.connect(self.actionOpen, QtCore.SIGNAL('triggered()'), self.openFile)
         self.connect(self.scale, QtCore.SIGNAL('valueChanged(double)'), self.updateImage)
         self.connect(self.cb_grey, QtCore.SIGNAL('stateChanged(int)'), self.updateImage)
-        self.connect(self.tabWidget, QtCore.SIGNAL('currentChanged(int)'), self.setTab)
+        # self.connect(self.tabWidget, QtCore.SIGNAL('currentChanged(int)'), self.setTab)
         self.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'), self.closeTab)
-        # self.connect(self.updateImageThread, QtCore.SIGNAL('update()'), self.updateImage)
-        # self.updateImageThread.update.connect(self.updateImage)
 
         self.initTabs()
 
@@ -92,29 +89,33 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         else:
             self.img_item.setImage(self.image)
 
-    def addTab(self):
-        items = QtCore.QStringList()
-        for i in possibleFilters:
-            items.append(possibleFilters[str(i)]['text'])
-        item, ok = QtGui.QInputDialog.getItem(QtGui.QComboBox(), 'New Filter', 'Select a Filter', items, editable=False)
-        if ok:
-            ### first remove the "+"-tab
-            self.tabWidget.removeTab(self.tabWidget.count() - 1)
-            ### then add the new Tab of the chosen Filter-Type
-            i = 0
-            for j in possibleFilters:
-                if possibleFilters[str(j)]['text'] == item:
-                    module = __import__(possibleFilters[str(j)]['module_name'])
-                    tab_class = getattr(module, possibleFilters[str(j)]['class'])
-                    new_tab = tab_class()
-                    i = j
-            # thresh_tab = Thresh_tab()
-            self.tabWidget.addTab(new_tab, possibleFilters[str(i)]['text'])
-            ### then add the "+"-tab again
-            empty_tab = Empty_tab()
-            self.tabWidget.addTab(empty_tab, "+")
-            ### set active Tab
-            self.tabWidget.setCurrentIndex(self.tabWidget.count() - 2)
+    def addTab(self, index):
+        if self.tabWidget.tabText(index) == '+':
+            items = QtCore.QStringList()
+            for i in possibleFilters:
+                items.append(possibleFilters[str(i)]['text'])
+            item, ok = QtGui.QInputDialog.getItem(QtGui.QComboBox(), 'New Filter', 'Select a Filter', items, editable=False)
+            if ok:
+                ### first remove the "+"-tab
+                self.tabWidget.removeTab(self.tabWidget.count() - 1)
+                ### then add the new Tab of the chosen Filter-Type
+                i = 0
+                for j in possibleFilters:
+                    if possibleFilters[str(j)]['text'] == item:
+                        module = __import__(possibleFilters[str(j)]['module_name'])
+                        tab_class = getattr(module, possibleFilters[str(j)]['class'])
+                        new_tab = tab_class()
+                        self.connect(new_tab, QtCore.SIGNAL('valueUpdated(int)'), self.updateImage)
+                        i = j
+                # thresh_tab = Thresh_tab()
+                self.tabWidget.addTab(new_tab, possibleFilters[str(i)]['text'])
+                ### then add the "+"-tab again
+                empty_tab = Empty_tab()
+                self.tabWidget.addTab(empty_tab, "+")
+                ### set active Tab to new Filter
+                self.tabWidget.setCurrentIndex(self.tabWidget.count() - 2)
+        else:
+            self.tabWidget.setCurrentIndex(index)
 
     def setTab(self, index):
         #if index == self.tabWidget.count() - 1:
@@ -122,15 +123,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.addTab()
 
     def closeTab(self, index):
-        if index != self.tabWidget.count() - 1 & index != 1:
+        count = self.tabWidget.count()
+        if (index != count - 1) & (index != 0):
             # the last tab should not be closed, it's the "+"-Tab
             self.tabWidget.removeTab(index)
+            # self.tabWidget.setCurrentIndex(index - 1)
 
 
     def initTabs(self):
         self.tabWidget.tabBar().installEventFilter(self)
 
-        self.tabContextMenu.addAction(QtGui.QIcon.fromTheme("edit-delete", QtGui.QIcon("ressources/delete.png")), "remove Filter")
+        self.tabContextMenu.addAction(QtGui.QIcon.fromTheme("edit-delete", QtGui.QIcon("ressources/delete.png")),
+                                      "remove Filter", lambda: self.closeTab(self.tabWidget.currentIndex()))
+
         # self.previousTabIndex = -1
         # self.tabBar.tabButton(self.tabWidget.count() - 1).hide()
         # tab3 = Tab3()
@@ -140,6 +145,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         if object == self.tabWidget.tabBar() and event.type() in \
             [QtCore.QEvent.MouseButtonPress, QtCore.QEvent.MouseButtonRelease] and \
             event.button() == QtCore.Qt.RightButton:
+            index = object.tabAt(event.pos())
+            object.setCurrentIndex(index)
             self.onTabRightClick(object.tabAt(event.pos()))
             """
             tabIndex = object.tabAt(event.pos())
@@ -151,59 +158,22 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 self.previousTabIndex = -1
             """
             return True
+        elif object == self.tabWidget.tabBar() and event.type() in \
+            [QtCore.QEvent.MouseButtonPress, QtCore.QEvent.MouseButtonRelease] and \
+            event.button() == QtCore.Qt.LeftButton:
+            self.addTab(object.tabAt(event.pos()))
+            return True
         return False
 
     def onTabRightClick(self, index):
-        if index != self.tabWidget.count()-1:
+        count = self.tabWidget.count()
+        if (index != count-1) & (index != 0):
             self.tabContextMenu.exec_(QtGui.QCursor.pos())
 
 class Empty_tab(QtGui.QWidget, Ui_emptyTab):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
-
-"""
-class Thresh_tab(QtGui.QWidget, Ui_thresh_tab):
-    def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-        self.setupUi(self)
-
-        self.setup()
-
-    def setup(self):
-        itemList = QtCore.QStringList()
-        itemList.append("Binary Threshold")
-        itemList.append("Binary Threshold, inverted")
-        itemList.append("Adaptive Threshold, mean")
-        itemList.append("Adaptive Threshold, Gaussian")
-        itemList.append("Otsu Threshold")
-        self.comb_thresh.addItems(itemList)
-"""
-"""
-class ImageThread(QtCore.QThread):
-    update = QtCore.pyqtSignal()
-    def __init__(self, parent=None):
-        QtCore.QThread.__init__(self, parent)
-        self.parent = parent
-
-    def run(self):
-        self.update.emit()
-        # QtCore.QThread.run(self)
-        # self.emit(QtCore.SIGNAL('update()'))
-        parent = self.parent
-        while parent.ImageThreadRunning:
-            self.emit(QtCore.SIGNAL('update()'))
-        self.quit()
-        try:
-            self.emit(QtCore.SIGNAL('update()'))
-        except Exception, e:
-            print('=> ERROR from ImageThread:' + str(e))
-
-
-    def __del__(self):
-        print('ImageThread deleted')
-        self.terminate()
-"""
 
 def main():
 

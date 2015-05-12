@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'dilation_tab.ui'
 #
-# Created: Thu May 07 15:26:42 2015
+# Created: Tue May 12 09:17:17 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,10 +27,14 @@ class Ui_dilation(object):
     def setupUi(self, dilation):
         dilation.setObjectName(_fromUtf8("dilation"))
         dilation.resize(400, 300)
+        self.label = QtGui.QLabel(dilation)
+        self.label.setGeometry(QtCore.QRect(20, 10, 46, 13))
+        self.label.setObjectName(_fromUtf8("label"))
 
         self.retranslateUi(dilation)
         QtCore.QMetaObject.connectSlotsByName(dilation)
 
     def retranslateUi(self, dilation):
         dilation.setWindowTitle(_translate("dilation", "Form", None))
+        self.label.setText(_translate("dilation", "Dilation", None))
 

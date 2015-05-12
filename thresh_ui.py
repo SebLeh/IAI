@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'thresh_tab.ui'
 #
-# Created: Thu May 07 15:26:41 2015
+# Created: Tue May 12 09:17:16 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!

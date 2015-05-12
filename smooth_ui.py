@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'smooth_tab.ui'
 #
-# Created: Thu May 07 15:26:41 2015
+# Created: Tue May 12 09:17:16 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,10 +27,14 @@ class Ui_smooth(object):
     def setupUi(self, smooth):
         smooth.setObjectName(_fromUtf8("smooth"))
         smooth.resize(400, 300)
+        self.label = QtGui.QLabel(smooth)
+        self.label.setGeometry(QtCore.QRect(10, 10, 91, 16))
+        self.label.setObjectName(_fromUtf8("label"))
 
         self.retranslateUi(smooth)
         QtCore.QMetaObject.connectSlotsByName(smooth)
 
     def retranslateUi(self, smooth):
         smooth.setWindowTitle(_translate("smooth", "Form", None))
+        self.label.setText(_translate("smooth", "Image Smoothing", None))
 

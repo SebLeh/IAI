@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'laplace_tab.ui'
 #
-# Created: Thu May 07 15:26:42 2015
+# Created: Tue May 12 09:17:17 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,10 +27,14 @@ class Ui_laplace(object):
     def setupUi(self, laplace):
         laplace.setObjectName(_fromUtf8("laplace"))
         laplace.resize(400, 300)
+        self.label = QtGui.QLabel(laplace)
+        self.label.setGeometry(QtCore.QRect(30, 20, 91, 16))
+        self.label.setObjectName(_fromUtf8("label"))
 
         self.retranslateUi(laplace)
         QtCore.QMetaObject.connectSlotsByName(laplace)
 
     def retranslateUi(self, laplace):
         laplace.setWindowTitle(_translate("laplace", "Form", None))
+        self.label.setText(_translate("laplace", "Laplace Derivate", None))
 

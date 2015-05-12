@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sobel_tab.ui'
 #
-# Created: Thu May 07 15:26:42 2015
+# Created: Tue May 12 09:17:17 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,10 +27,14 @@ class Ui_sobel(object):
     def setupUi(self, sobel):
         sobel.setObjectName(_fromUtf8("sobel"))
         sobel.resize(400, 300)
+        self.label = QtGui.QLabel(sobel)
+        self.label.setGeometry(QtCore.QRect(30, 20, 81, 16))
+        self.label.setObjectName(_fromUtf8("label"))
 
         self.retranslateUi(sobel)
         QtCore.QMetaObject.connectSlotsByName(sobel)
 
     def retranslateUi(self, sobel):
         sobel.setWindowTitle(_translate("sobel", "Form", None))
+        self.label.setText(_translate("sobel", "Sobel Operator", None))
 

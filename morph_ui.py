@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'morph_tab.ui'
 #
-# Created: Thu May 07 15:26:42 2015
+# Created: Tue May 12 09:17:17 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,10 +27,14 @@ class Ui_morph(object):
     def setupUi(self, morph):
         morph.setObjectName(_fromUtf8("morph"))
         morph.resize(400, 300)
+        self.label = QtGui.QLabel(morph)
+        self.label.setGeometry(QtCore.QRect(20, 20, 131, 16))
+        self.label.setObjectName(_fromUtf8("label"))
 
         self.retranslateUi(morph)
         QtCore.QMetaObject.connectSlotsByName(morph)
 
     def retranslateUi(self, morph):
         morph.setWindowTitle(_translate("morph", "Form", None))
+        self.label.setText(_translate("morph", "Morphological Gradient", None))
 

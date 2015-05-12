@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gauss_tab.ui'
 #
-# Created: Thu May 07 15:26:42 2015
+# Created: Tue May 12 09:17:16 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,10 +27,14 @@ class Ui_gauss(object):
     def setupUi(self, gauss):
         gauss.setObjectName(_fromUtf8("gauss"))
         gauss.resize(400, 300)
+        self.label = QtGui.QLabel(gauss)
+        self.label.setGeometry(QtCore.QRect(30, 20, 81, 16))
+        self.label.setObjectName(_fromUtf8("label"))
 
         self.retranslateUi(gauss)
         QtCore.QMetaObject.connectSlotsByName(gauss)
 
     def retranslateUi(self, gauss):
         gauss.setWindowTitle(_translate("gauss", "Form", None))
+        self.label.setText(_translate("gauss", "Gaussian Filter", None))
 

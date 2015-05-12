@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'median_tab.ui'
 #
-# Created: Thu May 07 15:26:42 2015
+# Created: Tue May 12 09:17:17 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,10 +27,14 @@ class Ui_median(object):
     def setupUi(self, median):
         median.setObjectName(_fromUtf8("median"))
         median.resize(400, 300)
+        self.label = QtGui.QLabel(median)
+        self.label.setGeometry(QtCore.QRect(20, 20, 81, 16))
+        self.label.setObjectName(_fromUtf8("label"))
 
         self.retranslateUi(median)
         QtCore.QMetaObject.connectSlotsByName(median)
 
     def retranslateUi(self, median):
         median.setWindowTitle(_translate("median", "Form", None))
+        self.label.setText(_translate("median", "Median Filter", None))
 
