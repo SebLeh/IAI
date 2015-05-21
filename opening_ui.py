@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'opening_tab.ui'
 #
-# Created: Thu May 21 14:46:08 2015
+# Created: Thu May 21 17:46:19 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!

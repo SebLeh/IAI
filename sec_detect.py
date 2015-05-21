@@ -161,6 +161,71 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 self.grey_img = cv2.morphologyEx(self.grey_img, cv2.MORPH_CLOSE, kernel, iterations=iterations)
                 self.image = cv2.morphologyEx(self.image, cv2.MORPH_CLOSE, kernel, iterations=iterations)
 
+            elif object_no == '8': #morph gradient
+                size = self.loaded_classes[index].value()
+                iterations = self.loaded_classes[index].valueIterations()
+                kernel = np.ones((size, size), np.uint8)
+                self.grey_img = cv2.morphologyEx(self.grey_img, cv2.MORPH_GRADIENT, kernel, iterations=iterations)
+                self.image = cv2.morphologyEx(self.image, cv2.MORPH_GRADIENT, kernel, iterations=iterations)
+
+            elif object_no == '9': #sobel
+                size = self.loaded_classes[index].value()
+                d = self.loaded_classes[index].valueDepth()
+                depth = cv2.CV_64F
+                if d == 0: #16
+                    depth = cv2.CV_16S
+                elif d == 1: #32
+                    depth = cv2.CV_32F
+                elif d == 2: #64
+                    depth = cv2.CV_64F
+                # dX = 0
+                # dY = 0
+                if self.loaded_classes[index].valueDX():
+                    # dX = 1
+                    greyX = cv2.Sobel(self.grey_img, depth, 1, 0, ksize=size)
+                    imgX = cv2.Sobel(self.image, depth, 1, 0, ksize=size)
+                    self.grey_img = greyX
+                    self.image = imgX
+                if self.loaded_classes[index].valueDY():
+                    # dY = 1
+                    greyY = cv2.Sobel(self.grey_img, depth, 0, 1, ksize=size)
+                    imgY = cv2.Sobel(self.image, depth, 0, 1, ksize=size)
+                    self.grey_img = greyY
+                    self.image = imgY
+                # self.grey_img = cv2.Sobel(self.grey_img, depth, dX, dY, ksize=size)
+                if self.loaded_classes[index].valueDX() & self.loaded_classes[index].valueDY():
+                    self.grey_img = cv2.add(greyX, greyY)
+                    self.image = cv2.add(imgX, imgY)
+                    # self.grey_img = greyX + greyY
+                    # self.image = imgX + imgY
+
+            elif object_no == '10': #laplace
+                size = self.loaded_classes[index].value()
+                d = self.loaded_classes[index].valueDepth()
+                depth = cv2.CV_64F
+                if d == 0: #16
+                    depth = cv2.CV_16S
+                elif d == 1: #32
+                    depth = cv2.CV_32F
+                elif d == 2: #64
+                    depth = cv2.CV_64F
+                self.image = cv2.Laplacian(self.image, depth, ksize=size)
+
+            elif object_no == '11': #canny
+                size = self.loaded_classes[index].value()
+                if self.loaded_classes[index].auto_thresh.isChecked():
+                    val, thr_otsu = cv2.threshold(self.grey_img, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+                    self.grey_img = cv2.Canny(self.grey_img, val*0.5, val, apertureSize=size)
+                    self.image = cv2.Canny(self.image, val*0.5, val, apertureSize=size)
+                    self.loaded_classes[index].low_thresh.setProperty("value", val*0.5)
+                    self.loaded_classes[index].high_thresh.setProperty("value", val)
+
+                else:
+                    low_thr = self.loaded_classes[index].valueLow()
+                    high_thr = self.loaded_classes[index].valueHigh()
+                    self.grey_img = cv2.Canny(self.grey_img, low_thr, high_thr, apertureSize=size)
+                    self.image = cv2.Canny(self.image, low_thr, high_thr, apertureSize=size)
+
 
 
         if self.cb_grey.isChecked():
@@ -207,6 +272,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         #if index == self.tabWidget.count() - 1:
         if self.tabWidget.tabText(index) == '+':
             self.addTab()
+            self.updateImage()
 
     def closeTab(self, index):
         count = self.tabWidget.count()
