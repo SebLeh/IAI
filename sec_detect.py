@@ -2,6 +2,7 @@
 __author__ = 'uleob'
 
 import pyqtgraph as pg
+import numpy as np
 import cv2
 import sys
 import array
@@ -17,8 +18,8 @@ possibleFilters = {
     '3':{'text': 'Gaussian Filter',         'index': 3,     'module_name': 'gauss',      'class': 'Gauss_tab'},
     '4':{'text': 'Median Filter',           'index': 4,     'module_name': 'median',     'class': 'Median_tab'},
     '5':{'text': 'Bilateral Filter',        'index': 5,     'module_name': 'bilateral',  'class': 'Bilateral_tab'},
-    '6':{'text': 'Erosion',                 'index': 6,     'module_name': 'erosion',    'class': 'Erosion_tab'},
-    '7':{'text': 'Dilation',                'index': 7,     'module_name': 'dilation',   'class': 'Dilation_tab'},
+    '6':{'text': 'Opening',                 'index': 6,     'module_name': 'opening',    'class': 'Opening_tab'},
+    '7':{'text': 'Closing',                 'index': 7,     'module_name': 'closing',    'class': 'Closing_tab'},
     '8':{'text': 'Morphological Gradient',  'index': 8,     'module_name': 'morph',      'class': 'Morph_tab'},
     '9':{'text': 'Sobel Operator',          'index': 9,     'module_name': 'sobel',      'class': 'Sobel_tab'},
     '10':{'text': 'Laplace Derivate',       'index': 10,    'module_name': 'laplace',    'class': 'Laplace_tab'},
@@ -34,9 +35,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.setupUi(self)
 
+        self.loaded_classes = []
+        self.object_index = [] # for the order of filters
+        self.applied_filters = []
+
         self.filename = None
         self.image = None
         self.grey_img = None
+        self.initial_image = None
         self.img_item = pg.ImageItem()
         self.label.addItem(self.img_item)
 
@@ -59,6 +65,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.image = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
             self.image = self.image[:, :, :3]
             self.image = self.image.transpose((1, 0, 2))
+            self.initial_image = self.image
             # self.image = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
             self.grey_img = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
             self.img_item.setImage(self.image)
@@ -79,15 +86,91 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def updateImage(self):
         # if self.image != None:
+
+        self.image = self.initial_image
+        self.grey_img = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+
         scaledWidth = self.scale.value() * self.image.shape[0]
         scaledHeight = self.scale.value() * self.image.shape[1]
         self.img_item.setRect(QtCore.QRect(0, 0, scaledWidth, scaledHeight))
         self.label.setFixedSize(scaledWidth, scaledHeight)
 
+        for i in self.object_index:     #contains order of filters to be applied
+            object_no = self.applied_filters[i] #see constant list possible_filters
+            index = self.applied_filters.index(object_no)
+
+            if object_no == '1':  #threshold
+                # set image to greyscale if not already applied
+                self.cb_grey.setChecked(True)
+
+                thresh_type = self.loaded_classes[index].thresh_type()
+                value = self.loaded_classes[index].value()
+                max_value = self.loaded_classes[index].max_value()
+                if thresh_type == 0: #binary
+                    ret, thresh = cv2.threshold(self.grey_img, value, max_value, cv2.THRESH_BINARY)
+                elif thresh_type == 1: #binary inverted
+                    ret, thresh = cv2.threshold(self.grey_img, value, max_value, cv2.THRESH_BINARY_INV)
+                elif thresh_type == 2: #adaptive mean
+                    thresh = cv2.adaptiveThreshold(self.grey_img, max_value, cv2.ADAPTIVE_THRESH_MEAN_C,
+                                                        cv2.THRESH_BINARY, 11, 2)
+                elif thresh_type == 3: #adaptive gaussian
+                    thresh = cv2.adaptiveThreshold(self.grey_img, max_value, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
+                                                        cv2.THRESH_BINARY, 11, 2)
+                elif thresh_type == 4: #otsu
+                    ret, thresh = cv2.threshold(self.grey_img, 0, max_value, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+
+                self.grey_img = thresh
+
+            elif object_no == '2': #smoothing
+                size = self.loaded_classes[index].value()
+                self.grey_img = cv2.blur(self.grey_img, (size, size))
+                self.image = cv2.blur(self.image, (size, size))
+
+            elif object_no == '3': #gauss
+                size = self.loaded_classes[index].value()
+                sigmaX = self.loaded_classes[index].valueX()
+                sigmaY = self.loaded_classes[index].valueY()
+                if sigmaY == 0:
+                    sigmaY = sigmaX
+                self.grey_img = cv2.GaussianBlur(self.grey_img, (size, size), sigmaX=sigmaX, sigmaY=sigmaY)
+                self.image = cv2.GaussianBlur(self.image, (size, size), sigmaX=sigmaX, sigmaY=sigmaY)
+
+            elif object_no == '4': #median
+                size = self.loaded_classes[index].value()
+                self.grey_img = cv2.medianBlur(self.grey_img, size)
+                self.image = cv2.medianBlur(self.image, size)
+
+            elif object_no == '5': #bilateral
+                size = self.loaded_classes[index].value()
+                sigmaSpace = self.loaded_classes[index].valueSpace()
+                sigmaColor = self.loaded_classes[index].valueColor()
+                self.grey_img = cv2.bilateralFilter(self.grey_img, size, sigmaColor, sigmaSpace)
+                self.image = cv2.bilateralFilter(self.image, size, sigmaColor, sigmaSpace)
+
+            elif object_no == '6': #opening
+                size = self.loaded_classes[index].value()
+                iterations = self.loaded_classes[index].valueIterations()
+                kernel = np.ones((size, size), np.uint8)
+                self.grey_img = cv2.morphologyEx(self.grey_img, cv2.MORPH_OPEN, kernel, iterations=iterations)
+                self.image = cv2.morphologyEx(self.image, cv2.MORPH_OPEN, kernel, iterations=iterations)
+
+            elif object_no == '7': #closing
+                size = self.loaded_classes[index].value()
+                iterations = self.loaded_classes[index].valueIterations()
+                kernel = np.ones((size, size), np.uint8)
+                self.grey_img = cv2.morphologyEx(self.grey_img, cv2.MORPH_CLOSE, kernel, iterations=iterations)
+                self.image = cv2.morphologyEx(self.image, cv2.MORPH_CLOSE, kernel, iterations=iterations)
+
+
+
         if self.cb_grey.isChecked():
             self.img_item.setImage(self.grey_img)
         else:
             self.img_item.setImage(self.image)
+
+        # elif filter == 'thresh':
+
+
 
     def addTab(self, index):
         if self.tabWidget.tabText(index) == '+':
@@ -105,7 +188,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         module = __import__(possibleFilters[str(j)]['module_name'])
                         tab_class = getattr(module, possibleFilters[str(j)]['class'])
                         new_tab = tab_class()
-                        self.connect(new_tab, QtCore.SIGNAL('valueUpdated(int)'), self.updateImage)
+                        self.loaded_classes.append(new_tab)
+                        self.object_index.append(self.object_index.__len__())
+                        self.applied_filters.append(j)
+                        self.connect(new_tab, QtCore.SIGNAL('valueUpdated()'), self.updateImage)
                         i = j
                 # thresh_tab = Thresh_tab()
                 self.tabWidget.addTab(new_tab, possibleFilters[str(i)]['text'])
@@ -129,17 +215,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.tabWidget.removeTab(index)
             # self.tabWidget.setCurrentIndex(index - 1)
 
+            """
+            to implement: dyn class free (garbage collector?), clearing lists
+            """
+
 
     def initTabs(self):
         self.tabWidget.tabBar().installEventFilter(self)
 
         self.tabContextMenu.addAction(QtGui.QIcon.fromTheme("edit-delete", QtGui.QIcon("ressources/delete.png")),
                                       "remove Filter", lambda: self.closeTab(self.tabWidget.currentIndex()))
-
-        # self.previousTabIndex = -1
-        # self.tabBar.tabButton(self.tabWidget.count() - 1).hide()
-        # tab3 = Tab3()
-        # self.tabWidget.addTab(tab3, 'Tab 3')
 
     def eventFilter(self, object, event):
         if object == self.tabWidget.tabBar() and event.type() in \

@@ -5,7 +5,7 @@ from thresh_ui import Ui_thresh_tab
 
 class Thresh_tab(QtGui.QWidget, Ui_thresh_tab):
 
-    valueUpdated = QtCore.pyqtSignal(int)
+    valueUpdated = QtCore.pyqtSignal()
 
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -23,9 +23,17 @@ class Thresh_tab(QtGui.QWidget, Ui_thresh_tab):
         self.comb_thresh.addItems(itemList)
 
         self.in_value.valueChanged.connect(self.update)
+        self.in_max.valueChanged.connect(self.update)
+        self.comb_thresh.currentIndexChanged.connect(self.update)
 
     def update(self):
-        self.emit(QtCore.SIGNAL('valueUpdated(int)'), self.in_value.value())
+        self.emit(QtCore.SIGNAL('valueUpdated()'))
 
-    def return_values(self):
+    def value(self):
         return self.in_value.value()
+
+    def max_value(self):
+        return self.in_max.value()
+
+    def thresh_type(self):
+        return self.comb_thresh.currentIndex()

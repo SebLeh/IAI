@@ -1,9 +1,9 @@
 __author__ = 'uleob'
 
-from PyQt4 import QtGui, QtCore
-from median_ui import Ui_median
+from PyQt4 import QtCore, QtGui
+from opening_ui import Ui_opening
 
-class Median_tab(QtGui.QWidget, Ui_median):
+class Opening_tab(QtGui.QWidget, Ui_opening):
 
     valueUpdated = QtCore.pyqtSignal()
 
@@ -12,9 +12,13 @@ class Median_tab(QtGui.QWidget, Ui_median):
         self.setupUi(self)
 
         self.size.valueChanged.connect(self.update)
+        self.iterations.valueChanged.connect(self.update)
 
     def update(self):
         self.emit(QtCore.SIGNAL('valueUpdated()'))
 
     def value(self):
         return self.size.value()
+
+    def valueIterations(self):
+        return self.iterations.value()

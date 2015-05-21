@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'thresh_tab.ui'
 #
-# Created: Tue May 12 09:17:16 2015
+# Created: Thu May 21 14:46:08 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_thresh_tab(object):
     def setupUi(self, thresh_tab):
         thresh_tab.setObjectName(_fromUtf8("thresh_tab"))
-        thresh_tab.resize(360, 120)
+        thresh_tab.resize(360, 140)
         self.gridLayout = QtGui.QGridLayout(thresh_tab)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.comb_thresh = QtGui.QComboBox(thresh_tab)
@@ -50,7 +50,7 @@ class Ui_thresh_tab(object):
         self.gridLayout.addWidget(self.label, 5, 0, 1, 1)
         self.note = QtGui.QLabel(thresh_tab)
         self.note.setObjectName(_fromUtf8("note"))
-        self.gridLayout.addWidget(self.note, 7, 0, 1, 1)
+        self.gridLayout.addWidget(self.note, 7, 0, 1, 2)
 
         self.retranslateUi(thresh_tab)
         QtCore.QMetaObject.connectSlotsByName(thresh_tab)
@@ -60,5 +60,5 @@ class Ui_thresh_tab(object):
         self.comb_thresh.setToolTip(_translate("thresh_tab", "select Type of Threshold", None))
         self.label_2.setText(_translate("thresh_tab", "Max. Value:", None))
         self.label.setText(_translate("thresh_tab", "Threshold:", None))
-        self.note.setText(_translate("thresh_tab", "Please Note: Image sould be grayscale", None))
+        self.note.setText(_translate("thresh_tab", "<html><head/><body><p>Please Note: Image sould be grayscale.<br/>The source image will be converted.</p></body></html>", None))
 

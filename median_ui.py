@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'median_tab.ui'
 #
-# Created: Tue May 12 09:17:17 2015
+# Created: Thu May 21 14:46:08 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,15 +26,27 @@ except AttributeError:
 class Ui_median(object):
     def setupUi(self, median):
         median.setObjectName(_fromUtf8("median"))
-        median.resize(400, 300)
+        median.resize(368, 80)
+        self.gridLayout = QtGui.QGridLayout(median)
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.label_2 = QtGui.QLabel(median)
+        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
+        self.size = QtGui.QSpinBox(median)
+        self.size.setMinimum(1)
+        self.size.setSingleStep(2)
+        self.size.setProperty("value", 3)
+        self.size.setObjectName(_fromUtf8("size"))
+        self.gridLayout.addWidget(self.size, 0, 1, 1, 1)
         self.label = QtGui.QLabel(median)
-        self.label.setGeometry(QtCore.QRect(20, 20, 81, 16))
         self.label.setObjectName(_fromUtf8("label"))
+        self.gridLayout.addWidget(self.label, 1, 0, 1, 2)
 
         self.retranslateUi(median)
         QtCore.QMetaObject.connectSlotsByName(median)
 
     def retranslateUi(self, median):
         median.setWindowTitle(_translate("median", "Form", None))
-        self.label.setText(_translate("median", "Median Filter", None))
+        self.label_2.setText(_translate("median", "Kernel Size:", None))
+        self.label.setText(_translate("median", "Reduces \"salt and pepper\" noise", None))
 

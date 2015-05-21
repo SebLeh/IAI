@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'smooth_tab.ui'
 #
-# Created: Tue May 12 09:17:16 2015
+# Created: Thu May 21 14:46:08 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,15 +26,23 @@ except AttributeError:
 class Ui_smooth(object):
     def setupUi(self, smooth):
         smooth.setObjectName(_fromUtf8("smooth"))
-        smooth.resize(400, 300)
+        smooth.resize(269, 38)
+        self.horizontalLayout = QtGui.QHBoxLayout(smooth)
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         self.label = QtGui.QLabel(smooth)
-        self.label.setGeometry(QtCore.QRect(10, 10, 91, 16))
         self.label.setObjectName(_fromUtf8("label"))
+        self.horizontalLayout.addWidget(self.label)
+        self.smooth_size = QtGui.QSpinBox(smooth)
+        self.smooth_size.setMinimum(1)
+        self.smooth_size.setSingleStep(2)
+        self.smooth_size.setProperty("value", 3)
+        self.smooth_size.setObjectName(_fromUtf8("smooth_size"))
+        self.horizontalLayout.addWidget(self.smooth_size)
 
         self.retranslateUi(smooth)
         QtCore.QMetaObject.connectSlotsByName(smooth)
 
     def retranslateUi(self, smooth):
         smooth.setWindowTitle(_translate("smooth", "Form", None))
-        self.label.setText(_translate("smooth", "Image Smoothing", None))
+        self.label.setText(_translate("smooth", "Kernel Size:", None))
 
