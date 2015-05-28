@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32cdf292-f7e0-4268-a018-2070f02daf22" name="Default" comment="built all hull classes for class-loader">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bilateral_tab.ui" afterPath="$PROJECT_DIR$/bilateral_tab.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect.ui" afterPath="$PROJECT_DIR$/sec_detect.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bilateral_ui.py" afterPath="$PROJECT_DIR$/bilateral_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/canny_ui.py" afterPath="$PROJECT_DIR$/canny_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/closing_ui.py" afterPath="$PROJECT_DIR$/closing_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/empty_ui.py" afterPath="$PROJECT_DIR$/empty_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gauss_ui.py" afterPath="$PROJECT_DIR$/gauss_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laplace_ui.py" afterPath="$PROJECT_DIR$/laplace_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/median_ui.py" afterPath="$PROJECT_DIR$/median_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/morph_ui.py" afterPath="$PROJECT_DIR$/morph_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/opening_ui.py" afterPath="$PROJECT_DIR$/opening_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect.py" afterPath="$PROJECT_DIR$/sec_detect.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect_ui.py" afterPath="$PROJECT_DIR$/sec_detect_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smooth_ui.py" afterPath="$PROJECT_DIR$/smooth_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sobel_ui.py" afterPath="$PROJECT_DIR$/sobel_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thresh_ui.py" afterPath="$PROJECT_DIR$/thresh_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="section detector.iws" />
@@ -45,8 +30,8 @@
       <file leaf-file-name="sec_detect.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sec_detect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41871345" vertical-offset="5864" max-vertical-offset="6732">
-              <caret line="366" column="75" selection-start-line="366" selection-start-column="75" selection-end-line="366" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.33333334" vertical-offset="1449" max-vertical-offset="6545">
+              <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
               <folding>
                 <element signature="e#45#67#0" expanded="true" />
               </folding>
@@ -77,8 +62,8 @@
       <file leaf-file-name="cameraControl.py" pinned="false" current-in-tab="false">
         <entry file="file:////iai-fileserv1/micmont/Berichte/Hiwi_Lehmann/UC-Helper_Kopie/cameraControl.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5674" max-vertical-offset="7854">
-              <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="7854">
+              <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -89,7 +74,7 @@
       <file leaf-file-name="laplace.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/laplace.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="663">
+            <state vertical-scroll-proportion="0.0" vertical-offset="51" max-vertical-offset="663">
               <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
               <folding>
                 <element signature="e#22#53#0" expanded="true" />
@@ -176,6 +161,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="section detector" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="section detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sec Detector" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -447,19 +442,19 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39932886" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997763" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39932886" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -485,8 +480,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/sec_detect.py</url>
-          <line>367</line>
-          <option name="timeStamp" value="65" />
+          <line>345</line>
+          <option name="timeStamp" value="78" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -499,7 +494,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="66" />
+      <option name="time" value="79" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -741,16 +736,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5903614" vertical-offset="37327" max-vertical-offset="37825">
           <caret line="2216" column="0" selection-start-line="2216" selection-start-column="0" selection-end-line="2217" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:////iai-fileserv1/micmont/Berichte/Hiwi_Lehmann/UC-Helper_Kopie/cameraControl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5674" max-vertical-offset="7854">
-          <caret line="258" column="0" selection-start-line="258" selection-start-column="0" selection-end-line="258" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -800,6 +786,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
           <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#22#53#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -849,6 +838,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#22#53#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -856,16 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0665362" vertical-offset="0" max-vertical-offset="578">
           <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laplace.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
-          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
-          <folding>
-            <element signature="e#22#53#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -892,10 +874,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/laplace.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+          <folding>
+            <element signature="e#22#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:////iai-fileserv1/micmont/Berichte/Hiwi_Lehmann/UC-Helper_Kopie/cameraControl.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="327" max-vertical-offset="7854">
+          <caret line="8" column="15" selection-start-line="8" selection-start-column="15" selection-end-line="8" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sec_detect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41871345" vertical-offset="5864" max-vertical-offset="6732">
-          <caret line="366" column="75" selection-start-line="366" selection-start-column="75" selection-end-line="366" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="1449" max-vertical-offset="6545">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
           <folding>
             <element signature="e#45#67#0" expanded="true" />
           </folding>

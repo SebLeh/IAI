@@ -101,14 +101,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.img_item.setRect(QtCore.QRect(0, 0, scaledWidth, scaledHeight))
         self.label.setFixedSize(scaledWidth, scaledHeight)
 
-        for i in self.object_index:     #contains order of filters to be applied
+        length = self.object_index.__len__()
+        for i in xrange(length):     #contains order of filters to be applied
             object_no = -1
             try:
-                object_no = self.applied_filters[i] #see constant list possible_filters
+                object_no = self.applied_filters[self.object_index[i]] #see constant list possible_filters
             except Exception, e:
-                # print(e)
-                # print("this filter was being removed")
                 ### current filter was removed, continue with next
+                ### should not occur; all lists are cleared properly
                 continue
             index = self.applied_filters.index(object_no)
 
@@ -239,16 +239,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     self.grey_img = cv2.Canny(self.grey_img, low_thr, high_thr, apertureSize=size)
                     self.image = cv2.Canny(self.image, low_thr, high_thr, apertureSize=size)
 
-
-
         if self.cb_grey.isChecked():
             self.img_item.setImage(self.grey_img)
         else:
             self.img_item.setImage(self.image)
-
-        # elif filter == 'thresh':
-
-
 
     def addTab(self, index):
         if self.tabWidget.tabText(index) == '+':
@@ -294,12 +288,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.tabWidget.removeTab(index)
             del(self.loaded_classes[index - 1])     # destroy object so filter is not applied anymore
             del(self.applied_filters[index - 1])    # remove the list item
-            # self.object_index.remove(index - 1)     # remove item which contains the index
-            # del(self.object_index[])
+            self.object_index.remove(index - 1)     # remove item which contains the index
 
             self.updateImage()
             self.setList()
-
 
     def initTabs(self):
         self.tabWidget.tabBar().installEventFilter(self)
@@ -342,33 +334,30 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def setList(self):
         self.sortList.clear()
         self.sortList.installEventFilter(self)
-        self.listItems = QtCore.QStringList()
-        # self.sortOrder = []
-        # j = 0
-        for i in self.object_index:
-            index = -1
-            try:
-                index = self.object_index[i]
-            except Exception, e:
-                # filter was being removed
-                continue
-            if not (index + 2) == self.tabWidget.count():
-                text = self.tabWidget.tabText(index + 1)
-                self.listItems.append(text)
-                # self.sortList.addItem(text)
-                # self.sortOrder.append(j)
-                # j += 1
-            # self.sortFilters.addItem(possibleFilters[str(self.applied_filters[index])]['text'])
-        self.sortList.addItems(self.listItems)
+        listItems = QtCore.QStringList()
+        for i in xrange(self.object_index.__len__()):
+            if not (self.object_index[i] + 2) == self.tabWidget.count():
+                text = self.tabWidget.tabText(self.object_index[i] + 1)
+                listItems.append(text)
+        self.sortList.addItems(listItems)
 
     def listDragDrop(self):
-        items = QtCore.QStringList()
-        # item = self.sortList.selectedItem()
-        if self.clickedListItem != self.sortList.currentRow(): # position where item is released
-            pass
-        pass
-        # self.firstItem = item
-        # self.updateImage()
+        if self.clickedListItem != self.sortList.currentRow():  # position where item is released
+            if self.clickedListItem < self.sortList.currentRow(): # drag-position < drop-position
+                # index = self.sortList.currentRow()
+                clicked = self.object_index[self.clickedListItem]
+                for i in xrange(self.sortList.currentRow() - self.clickedListItem):
+                    self.object_index[i] = self.object_index[i + 1]
+                self.object_index[self.sortList.currentRow()] = clicked
+                # self.object_index[self.clickedListItem] = self.object_index[self.sortList.currentRow()]
+            elif self.clickedListItem > self.sortList.currentRow(): # drop-position < drag-position
+                # index = self.sortList.currentRow()
+                clicked = self.object_index[self.clickedListItem]
+                for i in xrange(self.clickedListItem - self.sortList.currentRow()):
+                # for i in xrange(self.sortList.currentRow() + 1, self.clickedListItem + 1):
+                    self.object_index[self.clickedListItem - i] = self.object_index[self.clickedListItem - i - 1]
+                self.object_index[self.sortList.currentRow()] = clicked
+        self.updateImage()
 
     def listClick(self):
         self.clickedListItem = self.sortList.currentRow()
