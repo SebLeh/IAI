@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sec_detect.ui'
 #
-# Created: Thu May 21 11:01:46 2015
+# Created: Tue May 26 14:16:05 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,30 +34,38 @@ class Ui_MainWindow(object):
         self.label = GraphicsView(self.centralwidget)
         # self.label.setText(_fromUtf8(""))
         self.label.setObjectName(_fromUtf8("label"))
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.label, 1, 0, 1, 1)
         self.tabWidget = QtGui.QTabWidget(self.centralwidget)
         self.tabWidget.setMinimumSize(QtCore.QSize(300, 0))
         self.tabWidget.setTabsClosable(False)
         self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
         self.tab_1 = QtGui.QWidget()
         self.tab_1.setObjectName(_fromUtf8("tab_1"))
+        self.gridLayout_2 = QtGui.QGridLayout(self.tab_1)
+        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
+        self.cb_grey = QtGui.QCheckBox(self.tab_1)
+        self.cb_grey.setObjectName(_fromUtf8("cb_grey"))
+        self.gridLayout_2.addWidget(self.cb_grey, 1, 0, 1, 1)
+        self.label_2 = QtGui.QLabel(self.tab_1)
+        self.label_2.setObjectName(_fromUtf8("label_2"))
+        self.gridLayout_2.addWidget(self.label_2, 4, 0, 1, 1)
         self.lbl_scale = QtGui.QLabel(self.tab_1)
-        self.lbl_scale.setGeometry(QtCore.QRect(10, 20, 46, 13))
         self.lbl_scale.setObjectName(_fromUtf8("lbl_scale"))
+        self.gridLayout_2.addWidget(self.lbl_scale, 0, 0, 1, 1)
         self.scale = QtGui.QDoubleSpinBox(self.tab_1)
-        self.scale.setGeometry(QtCore.QRect(110, 10, 62, 22))
         self.scale.setMaximum(3.0)
         self.scale.setSingleStep(0.25)
         self.scale.setProperty("value", 0.5)
         self.scale.setObjectName(_fromUtf8("scale"))
-        self.cb_grey = QtGui.QCheckBox(self.tab_1)
-        self.cb_grey.setGeometry(QtCore.QRect(10, 40, 70, 17))
-        self.cb_grey.setObjectName(_fromUtf8("cb_grey"))
+        self.gridLayout_2.addWidget(self.scale, 0, 1, 1, 1)
+        self.sortList = QtGui.QListWidget(self.tab_1)
+        self.sortList.setObjectName(_fromUtf8("sortList"))
+        self.gridLayout_2.addWidget(self.sortList, 5, 0, 1, 2)
         self.tabWidget.addTab(self.tab_1, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
         self.tabWidget.addTab(self.tab_2, _fromUtf8(""))
-        self.gridLayout.addWidget(self.tabWidget, 0, 1, 1, 1)
+        self.gridLayout.addWidget(self.tabWidget, 1, 2, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 697, 21))
@@ -96,8 +104,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(_translate("MainWindow", "Section Detector", None))
-        self.lbl_scale.setText(_translate("MainWindow", "Scale:", None))
         self.cb_grey.setText(_translate("MainWindow", "Greyscale", None))
+        self.label_2.setText(_translate("MainWindow", "Define the order of the filters to be applied:", None))
+        self.lbl_scale.setText(_translate("MainWindow", "Scale:", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_1), _translate("MainWindow", "Display settings", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "+", None))
         self.tabWidget.setTabToolTip(self.tabWidget.indexOf(self.tab_2), _translate("MainWindow", "add new filter", None))

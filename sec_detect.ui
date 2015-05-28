@@ -15,14 +15,14 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="GraphicsView" name="label">
       <property name="text">
        <string/>
       </property>
      </widget>
     </item>
-    <item row="0" column="1">
+    <item row="1" column="2">
      <widget class="QTabWidget" name="tabWidget">
       <property name="minimumSize">
        <size>
@@ -40,51 +40,45 @@
        <attribute name="title">
         <string>Display settings</string>
        </attribute>
-       <widget class="QLabel" name="lbl_scale">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>20</y>
-          <width>46</width>
-          <height>13</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Scale:</string>
-        </property>
-       </widget>
-       <widget class="QDoubleSpinBox" name="scale">
-        <property name="geometry">
-         <rect>
-          <x>110</x>
-          <y>10</y>
-          <width>62</width>
-          <height>22</height>
-         </rect>
-        </property>
-        <property name="maximum">
-         <double>3.000000000000000</double>
-        </property>
-        <property name="singleStep">
-         <double>0.250000000000000</double>
-        </property>
-        <property name="value">
-         <double>0.500000000000000</double>
-        </property>
-       </widget>
-       <widget class="QCheckBox" name="cb_grey">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>40</y>
-          <width>70</width>
-          <height>17</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Greyscale</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" name="gridLayout_2">
+        <item row="1" column="0">
+         <widget class="QCheckBox" name="cb_grey">
+          <property name="text">
+           <string>Greyscale</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Define the order of the filters to be applied:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="lbl_scale">
+          <property name="text">
+           <string>Scale:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="scale">
+          <property name="maximum">
+           <double>3.000000000000000</double>
+          </property>
+          <property name="singleStep">
+           <double>0.250000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.500000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0" colspan="2">
+         <widget class="QListWidget" name="sortList"/>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">

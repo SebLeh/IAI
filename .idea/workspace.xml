@@ -2,27 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32cdf292-f7e0-4268-a018-2070f02daf22" name="Default" comment="built all hull classes for class-loader">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/canny_tab.ui" afterPath="$PROJECT_DIR$/canny_tab.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laplace_tab.ui" afterPath="$PROJECT_DIR$/laplace_tab.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/morph_tab.ui" afterPath="$PROJECT_DIR$/morph_tab.ui" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sobel_tab.ui" afterPath="$PROJECT_DIR$/sobel_tab.ui" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bilateral_tab.ui" afterPath="$PROJECT_DIR$/bilateral_tab.ui" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect.ui" afterPath="$PROJECT_DIR$/sec_detect.ui" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bilateral_ui.py" afterPath="$PROJECT_DIR$/bilateral_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/canny.py" afterPath="$PROJECT_DIR$/canny.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/canny_ui.py" afterPath="$PROJECT_DIR$/canny_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/closing_ui.py" afterPath="$PROJECT_DIR$/closing_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/empty_ui.py" afterPath="$PROJECT_DIR$/empty_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gauss_ui.py" afterPath="$PROJECT_DIR$/gauss_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laplace.py" afterPath="$PROJECT_DIR$/laplace.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/laplace_ui.py" afterPath="$PROJECT_DIR$/laplace_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/median_ui.py" afterPath="$PROJECT_DIR$/median_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/morph.py" afterPath="$PROJECT_DIR$/morph.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/morph_ui.py" afterPath="$PROJECT_DIR$/morph_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/opening_ui.py" afterPath="$PROJECT_DIR$/opening_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect.py" afterPath="$PROJECT_DIR$/sec_detect.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect_ui.py" afterPath="$PROJECT_DIR$/sec_detect_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/smooth_ui.py" afterPath="$PROJECT_DIR$/smooth_ui.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sobel.py" afterPath="$PROJECT_DIR$/sobel.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sobel_ui.py" afterPath="$PROJECT_DIR$/sobel_ui.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/thresh_ui.py" afterPath="$PROJECT_DIR$/thresh_ui.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="section detector.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,8 +45,8 @@
       <file leaf-file-name="sec_detect.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sec_detect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45535713" vertical-offset="3417" max-vertical-offset="5848">
-              <caret line="216" column="107" selection-start-line="216" selection-start-column="107" selection-end-line="216" selection-end-column="107" />
+            <state vertical-scroll-proportion="0.41871345" vertical-offset="5864" max-vertical-offset="6732">
+              <caret line="366" column="75" selection-start-line="366" selection-start-column="75" selection-end-line="366" selection-end-column="75" />
               <folding>
                 <element signature="e#45#67#0" expanded="true" />
               </folding>
@@ -58,38 +54,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="canny.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/canny.py">
+      <file leaf-file-name="sec_detect_ui.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sec_detect_ui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="714">
-              <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-              <folding>
-                <element signature="e#22#53#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2176">
+              <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="laplace.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/laplace.py">
+      <file leaf-file-name="ImageItem.py" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Python27/Lib/site-packages/pyqtgraph/graphicsItems/ImageItem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="39" max-vertical-offset="663">
-              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-              <folding>
-                <element signature="e#22#53#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sobel.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sobel.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
-              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="26" selection-end-column="37" />
-              <folding>
-                <element signature="e#22#53#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="2707" max-vertical-offset="8942">
+              <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -106,24 +86,24 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="laplace.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/laplace.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="663">
+              <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+              <folding>
+                <element signature="e#22#53#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="roi_oo.py" pinned="false" current-in-tab="false">
         <entry file="file:////iai-fileserv1/micmont/Berichte/Hiwi_Lehmann/share/ROI/oo/roi_oo.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="2192" max-vertical-offset="3060">
               <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="thresh.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/thresh.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="141" max-vertical-offset="765">
-              <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="17" selection-end-column="43" />
-              <folding>
-                <element signature="e#22#53#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -143,7 +123,6 @@
       <list>
         <option value="$PROJECT_DIR$/ressources/smooth.py" />
         <option value="$PROJECT_DIR$/dilation.py" />
-        <option value="$PROJECT_DIR$/sec_detect_ui.py" />
         <option value="$PROJECT_DIR$/smooth.py" />
         <option value="$PROJECT_DIR$/thresh.py" />
         <option value="$PROJECT_DIR$/gauss.py" />
@@ -157,6 +136,7 @@
         <option value="$PROJECT_DIR$/sobel.py" />
         <option value="$PROJECT_DIR$/laplace.py" />
         <option value="$PROJECT_DIR$/canny.py" />
+        <option value="$PROJECT_DIR$/sec_detect_ui.py" />
         <option value="$PROJECT_DIR$/sec_detect.py" />
       </list>
     </option>
@@ -190,7 +170,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -199,18 +178,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="section detector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Sec Detector" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -467,7 +437,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -477,19 +447,19 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39932886" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997763" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39932886" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -514,21 +484,14 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/median.py</url>
-          <line>2</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/bilateral.py</url>
-          <line>2</line>
-          <option name="timeStamp" value="43" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/laplace.py</url>
-          <line>2</line>
-          <option name="timeStamp" value="44" />
+          <url>file://$PROJECT_DIR$/sec_detect.py</url>
+          <line>367</line>
+          <option name="timeStamp" value="65" />
         </line-breakpoint>
       </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -536,29 +499,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="48" />
+      <option name="time" value="66" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:////iai-fileserv1/micmont/Berichte/Hiwi_Lehmann/UC-Helper_Kopie/cameraControl.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3315" max-vertical-offset="7854">
-          <caret line="62" column="21" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:////iai-fileserv1/micmont/Berichte/Hiwi_Lehmann/share/ROI/oo/roi_oo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2192" max-vertical-offset="3060">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tab3_ui.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="221" max-vertical-offset="918">
@@ -796,7 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5903614" vertical-offset="37327" max-vertical-offset="37825">
           <caret line="2216" column="0" selection-start-line="2216" selection-start-column="0" selection-end-line="2217" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -810,19 +754,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sec_detect_ui.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2023">
-          <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd_breakpoints.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1122" max-vertical-offset="2686">
           <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -830,7 +765,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
           <caret line="11" column="66" selection-start-line="11" selection-start-column="66" selection-end-line="11" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -838,9 +772,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#22#53#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -848,27 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
           <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-          <folding>
-            <element signature="e#22#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/median.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
-          <folding>
-            <element signature="e#22#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bilateral.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -876,7 +786,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14834206" vertical-offset="0" max-vertical-offset="573">
           <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,7 +793,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.59336823" vertical-offset="0" max-vertical-offset="573">
           <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -892,9 +800,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
           <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding>
-            <element signature="e#22#53#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -902,7 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="6885" max-vertical-offset="24463">
           <caret line="433" column="0" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,7 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.40963855" vertical-offset="0" max-vertical-offset="578">
           <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -918,19 +821,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="141" max-vertical-offset="765">
           <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="17" selection-end-column="43" />
-          <folding>
-            <element signature="e#22#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/laplace.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="39" max-vertical-offset="663">
-          <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-          <folding>
-            <element signature="e#22#53#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -938,9 +828,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="26" selection-end-column="37" />
-          <folding>
-            <element signature="e#22#53#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -948,7 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.30357143" vertical-offset="306" max-vertical-offset="1377">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -956,16 +842,60 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="714">
           <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/median.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bilateral.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0665362" vertical-offset="0" max-vertical-offset="578">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/laplace.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="663">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
           <folding>
             <element signature="e#22#53#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/pyqtgraph/graphicsItems/GraphicsObject.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="191" max-vertical-offset="765">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python27/Lib/site-packages/pyqtgraph/graphicsItems/ImageItem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2707" max-vertical-offset="8942">
+          <caret line="177" column="0" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sec_detect_ui.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2176">
+          <caret line="34" column="10" selection-start-line="34" selection-start-column="10" selection-end-line="34" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/sec_detect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45535713" vertical-offset="3417" max-vertical-offset="5848">
-          <caret line="216" column="107" selection-start-line="216" selection-start-column="107" selection-end-line="216" selection-end-column="107" />
+        <state vertical-scroll-proportion="0.41871345" vertical-offset="5864" max-vertical-offset="6732">
+          <caret line="366" column="75" selection-start-line="366" selection-start-column="75" selection-end-line="366" selection-end-column="75" />
           <folding>
             <element signature="e#45#67#0" expanded="true" />
           </folding>

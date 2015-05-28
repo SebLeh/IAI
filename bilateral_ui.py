@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'bilateral_tab.ui'
 #
-# Created: Thu May 21 17:46:19 2015
+# Created: Tue May 26 11:15:51 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -65,6 +65,6 @@ class Ui_bilateral(object):
         bilateral.setWindowTitle(_translate("bilateral", "Form", None))
         self.label_3.setText(_translate("bilateral", "Sigma Space", None))
         self.label_2.setText(_translate("bilateral", "Kernel Size:", None))
-        self.label.setText(_translate("bilateral", "<html><head/><body><p>Reduces noise, while preserving edges.<br/>Needs more computation and therefor is slower.</p><p>For real-time applications size shouldn\'t be &gt;5.<br/>If size equals 0, it will be computed from Sigma Space.</p><p>Sigma Space: A larger value of the parameter means that farther pixels<br/>will influence each other as long as their colors are close enough</p><p>Sigma Color: A larger value of the parameter means that farther colors within<br/>the pixel neighborhood (Sigma Space) will be mixed together, <br/>resulting in larger areas of semi-equal color.</p></body></html>", None))
+        self.label.setText(_translate("bilateral", "<html><head/><body><p>Reduces noise, while preserving edges.<br/>Needs more computation and therefor is slower.</p><p>For real-time applications size shouldn\'t be &gt;5.<br/>If size equals 0, it will be computed from Sigma Space.</p><p>Sigma Space: A larger value of the parameter means that <br/>farther pixels will influence each other as long as their<br/>colors are close enough.</p><p>Sigma Color: A larger value of the parameter means that <br/>farther colors within the pixel neighborhood (Sigma Space)<br/>will be mixed together, resulting in larger areas of <br/>semi-equal color.</p></body></html>", None))
         self.label_4.setText(_translate("bilateral", "Sigma Color", None))
 
