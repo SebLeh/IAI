@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>697</width>
-    <height>425</height>
+    <width>474</width>
+    <height>431</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,78 +16,131 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="1" column="0">
-     <widget class="GraphicsView" name="label">
+     <widget class="GraphicsView" name="label_3">
       <property name="text">
-       <string/>
+       <string>init</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="2">
-     <widget class="QTabWidget" name="tabWidget">
-      <property name="minimumSize">
-       <size>
-        <width>300</width>
-        <height>0</height>
-       </size>
+    <item row="0" column="0">
+     <widget class="GraphicsView" name="label">
+      <property name="text">
+       <string>img</string>
       </property>
-      <property name="currentIndex">
-       <number>0</number>
+     </widget>
+    </item>
+    <item row="0" column="3" rowspan="2">
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string/>
       </property>
-      <property name="tabsClosable">
-       <bool>false</bool>
-      </property>
-      <widget class="QWidget" name="tab_1">
-       <attribute name="title">
-        <string>Display settings</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_2">
-        <item row="1" column="0">
-         <widget class="QCheckBox" name="cb_grey">
-          <property name="text">
-           <string>Greyscale</string>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Define the order of the filters to be applied:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="lbl_scale">
+         <property name="text">
+          <string>Scale:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QDoubleSpinBox" name="scale">
+         <property name="minimum">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="maximum">
+          <double>3.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.100000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.300000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QCheckBox" name="cb_roi">
+         <property name="text">
+          <string>Activate ROI</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QCheckBox" name="cb_grey">
+         <property name="text">
+          <string>Greyscale</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QPushButton" name="btn_add">
+         <property name="text">
+          <string>Add new Filter</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QComboBox" name="combbox_detector"/>
+       </item>
+       <item row="6" column="0" colspan="2">
+        <widget class="QListWidget" name="sortList"/>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Select Type of Contour Detector</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0" colspan="2">
+        <widget class="QScrollArea" name="detector_area">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>294</width>
+            <height>67</height>
+           </rect>
           </property>
          </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Define the order of the filters to be applied:</string>
+        </widget>
+       </item>
+       <item row="7" column="0" colspan="2">
+        <widget class="QScrollArea" name="filter_area">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_2">
+          <property name="geometry">
+           <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>294</width>
+            <height>67</height>
+           </rect>
           </property>
          </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="lbl_scale">
-          <property name="text">
-           <string>Scale:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QDoubleSpinBox" name="scale">
-          <property name="maximum">
-           <double>3.000000000000000</double>
-          </property>
-          <property name="singleStep">
-           <double>0.250000000000000</double>
-          </property>
-          <property name="value">
-           <double>0.500000000000000</double>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="0" colspan="2">
-         <widget class="QListWidget" name="sortList"/>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>+</string>
-       </attribute>
-       <attribute name="toolTip">
-        <string>add new filter</string>
-       </attribute>
-      </widget>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="btn_apply">
+         <property name="text">
+          <string>Apply Changes</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </item>
    </layout>
@@ -97,7 +150,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>697</width>
+     <width>474</width>
      <height>21</height>
     </rect>
    </property>

@@ -16,6 +16,8 @@ class Canny_tab(QtGui.QWidget, Ui_canny):
         self.high_thresh.valueChanged.connect(self.update)
         self.auto_thresh.stateChanged.connect(self.update)
 
+        self.recent_size = -1
+
     def update(self):
 
         if self.auto_thresh.isChecked():
@@ -28,7 +30,11 @@ class Canny_tab(QtGui.QWidget, Ui_canny):
         self.emit(QtCore.SIGNAL('valueUpdated()'))
 
     def value(self):
-        return self.size.value()
+        try:
+            self.recent_size = self.size.value()
+            return self.size.value()
+        except Exception, e:
+            return self.recent_size
 
     def valueLow(self):
         return self.low_thresh.value()

@@ -5,62 +5,73 @@ import pyqtgraph as pg
 import numpy as np
 import cv2
 import sys
-import array
-import PyQt4
+# import inspect
 from PyQt4 import QtGui, QtCore
 from sec_detect_ui import Ui_MainWindow
+from parameters import possibleFilters
+from parameters import possibleDetectors
+from process import Image
+from filter_widget import GenerateWidget
 
-from empty_ui import Ui_emptyTab
-
-possibleFilters = {
-    '0':{'text': 'Threshold',               'index': 0,     'module_name': 'thresh',     'class': 'Thresh_tab'},
-    '1':{'text': 'Image Smoothing',         'index': 1,     'module_name': 'smooth',     'class': 'Smooth_tab'},
-    '2':{'text': 'Gaussian Filter',         'index': 2,     'module_name': 'gauss',      'class': 'Gauss_tab'},
-    '3':{'text': 'Median Filter',           'index': 3,     'module_name': 'median',     'class': 'Median_tab'},
-    '4':{'text': 'Bilateral Filter',        'index': 4,     'module_name': 'bilateral',  'class': 'Bilateral_tab'},
-    '5':{'text': 'Opening',                 'index': 5,     'module_name': 'opening',    'class': 'Opening_tab'},
-    '6':{'text': 'Closing',                 'index': 6,     'module_name': 'closing',    'class': 'Closing_tab'},
-    '7':{'text': 'Morphological Gradient',  'index': 7,     'module_name': 'morph',      'class': 'Morph_tab'},
-    '8':{'text': 'Sobel Operator',          'index': 8,     'module_name': 'sobel',      'class': 'Sobel_tab'},
-    '9':{'text': 'Laplace Derivate',        'index': 9,     'module_name': 'laplace',    'class': 'Laplace_tab'},
-    '10':{'text': 'Canny Edge Detection',   'index': 10,    'module_name': 'canny',      'class': 'Canny_tab'}
-}
+# from empty_ui import Ui_emptyTab
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
-
-    update = QtCore.pyqtSignal()
 
     def __init__(self, parent=None):
         QtGui.QMainWindow.__init__(self, parent)
 
         self.setupUi(self)
 
-        self.loaded_classes = []    # for all
+        self.imageProcess = Image()
+
+        self.loaded_classes = []    # for all loaded widgets
         self.object_index = []      # for the order of filters
         self.applied_filters = []
         self.clickedListItem = 0
+
+        self.roi = pg.RectROI([100, 100], [100, 100], pen=(0, 9))
 
         self.filename = None
         self.image = None
         self.grey_img = None
         self.initial_image = None
+        self.roi_image = None
         self.img_item = pg.ImageItem()
+        self.init_image_item = pg.ImageItem()
         self.label.addItem(self.img_item)
+        self.label_3.addItem(self.init_image_item)
 
-        self.tabContextMenu = QtGui.QMenu()
+        # self.tabContextMenu = QtGui.QMenu()
 
         self.connect(self.actionOpen, QtCore.SIGNAL('triggered()'), self.openFile)
-        self.connect(self.scale, QtCore.SIGNAL('valueChanged(double)'), self.updateImage)
+        # self.connect(self.scale, QtCore.SIGNAL('valueChanged(double)'), self.updateImage)
         self.connect(self.cb_grey, QtCore.SIGNAL('stateChanged(int)'), self.updateImage)
-        # self.connect(self.tabWidget, QtCore.SIGNAL('currentChanged(int)'), self.setTab)
-        self.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'), self.closeTab)
-        # self.connect(self.sortList, QtCore.SIGNAL('itemClicked()'), self.listDragDrop)
+        self.connect(self.btn_apply, QtCore.SIGNAL('clicked()'), self.updateImage)
+        # self.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'), self.closeTab)
+        self.connect(self.btn_add, QtCore.SIGNAL('clicked()'), self.addFilter)
+        self.connect(self.cb_roi, QtCore.SIGNAL('stateChanged(int)'), self.roiUpdate)
+
         self.sortList.itemPressed.connect(self.listClick)
-
+        self.sortList.installEventFilter(self)
         self.sortList.setDragDropMode(QtGui.QAbstractItemView.InternalMove)
-        # self.sortFilters.setMouseTracking(True)
 
-        self.initTabs()
+        """
+        widget1 = Canny_tab()
+        widget2 = Canny_tab()
+        self.filter_area.setWidget(widget1)
+        self.detector_area.setWidget(widget2)
+        print inspect.getcallargs(cv2.Canny, 1, 2, 3)
+        # print inspect.getargspec(cv2.Canny, inspect.isclass(cv2))
+        obj = getattr(cv2, 'Canny')
+        print obj
+        print obj.__name__
+        arginfo = inspect.getargspec(obj)
+        args = arginfo[0]
+        print args
+
+        # print self.openFile.func_code.co_varnames
+        """
+        # self.initTabs()
 
     def openFile(self):
         fileopen = QtGui.QFileDialog()
@@ -73,22 +84,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             self.image = self.image.transpose((1, 0, 2))
             self.initial_image = self.image
             # self.image = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
-            self.grey_img = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+            self.grey_img = cv2.cvtColor(self.image, cv2.COLOR_RGB2GRAY)
             self.img_item.setImage(self.image)
-            """
-            scaledWidth = self.scale.value() * self.image.shape[0]
-            scaledHeight = self.scale.value() *  self.image.shape[1]
-            self.img_item.setRect(QtCore.QRect(0, 0, scaledWidth, scaledHeight))
-            self.label.setFixedSize(scaledWidth, scaledHeight)
-
-            if not self.updateImageThread.isRunning():
-                self.ImageThreadRunning = True
-                self.updateImageThread.run()
-            """
-            self.updateImage()
+            self.init_image_item.setImage(self.initial_image)
         except Exception, e:
             print(e)
             print("No file selected?")
+
+        self.updateImage()
 
     def updateImage(self):
         # if self.image != None:
@@ -99,7 +102,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         scaledWidth = self.scale.value() * self.image.shape[0]
         scaledHeight = self.scale.value() * self.image.shape[1]
         self.img_item.setRect(QtCore.QRect(0, 0, scaledWidth, scaledHeight))
+        self.init_image_item.setRect(QtCore.QRect(0, 0, scaledWidth, scaledHeight))
         self.label.setFixedSize(scaledWidth, scaledHeight)
+        self.label_3.setFixedSize(scaledWidth, scaledHeight)
+
+        ###
+        if self.cb_grey.isChecked() == True:
+            self.imageProcess.update(self.grey_img, self.object_index, self.applied_filters, self.loaded_classes)
+        else:
+            self.imageProcess.update(self.image, self.object_index, self.applied_filters, self.loaded_classes)
+        ###
+
 
         length = self.object_index.__len__()
         for i in xrange(length):     #contains order of filters to be applied
@@ -239,11 +252,34 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     self.grey_img = cv2.Canny(self.grey_img, low_thr, high_thr, apertureSize=size)
                     self.image = cv2.Canny(self.image, low_thr, high_thr, apertureSize=size)
 
+        self.rectDetect()
+
         if self.cb_grey.isChecked():
             self.img_item.setImage(self.grey_img)
         else:
             self.img_item.setImage(self.image)
 
+    def addFilter(self):
+        items = QtCore.QStringList()
+        for i in possibleFilters:
+            items.append(possibleFilters[str(i)]['text'])
+        item, ok = QtGui.QInputDialog.getItem(QtGui.QComboBox(), 'New Filter', 'Select a Filter', items, editable=False)
+        if ok:
+            i = 0
+            for j in possibleFilters:
+                if possibleFilters[str(j)]['text'] == item:
+                    # module = __import__(possibleFilters[str(j)]['module_name'])
+                    # tab_class = getattr(module, possibleFilters[str(j)]['class'])
+                    new_filter = GenerateWidget(str(j))
+                    self.loaded_classes.append(new_filter)
+                    self.object_index.append(self.object_index.__len__())
+                    self.applied_filters.append(j)
+                    self.connect(self.loaded_classes[self.loaded_classes.__len__() - 1], QtCore.SIGNAL('valueUpdated()'), self.updateImage)
+                    i = j
+                    self.filter_area.setWidget(self.loaded_classes[self.loaded_classes.__len__() - 1])
+        self.setList()
+
+    """
     def addTab(self, index):
         if self.tabWidget.tabText(index) == '+':
             items = QtCore.QStringList()
@@ -298,30 +334,24 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.tabContextMenu.addAction(QtGui.QIcon.fromTheme("edit-delete", QtGui.QIcon("ressources/delete.png")),
                                       "remove Filter", lambda: self.closeTab(self.tabWidget.currentIndex()))
+    """
 
     def eventFilter(self, object, event):
+        """
         if object == self.tabWidget.tabBar() and event.type() in \
             [QtCore.QEvent.MouseButtonPress, QtCore.QEvent.MouseButtonRelease] and \
             event.button() == QtCore.Qt.RightButton:
             index = object.tabAt(event.pos())
             object.setCurrentIndex(index)
             self.onTabRightClick(object.tabAt(event.pos()))
-            """
-            tabIndex = object.tabAt(event.pos())
-            if event.type == QtCore.QEvent.MouseButtonPress:
-                self.previousTabIndex = tabIndex
-            else:
-                if tabIndex != -1 and tabIndex == self.previousTabIndex:
-                    self.onTabRightClick(tabIndex)
-                self.previousTabIndex = -1
-            """
             return True
         elif object == self.tabWidget.tabBar() and event.type() in \
             [QtCore.QEvent.MouseButtonPress, QtCore.QEvent.MouseButtonRelease] and \
             event.button() == QtCore.Qt.LeftButton:
             self.addTab(object.tabAt(event.pos()))
             return True
-        elif object == self.sortList and event.type() == QtCore.QEvent.ChildRemoved:
+        """
+        if object == self.sortList and event.type() == QtCore.QEvent.ChildRemoved:
             self.listDragDrop()
             return True
         return False
@@ -333,12 +363,13 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def setList(self):
         self.sortList.clear()
-        self.sortList.installEventFilter(self)
         listItems = QtCore.QStringList()
         for i in xrange(self.object_index.__len__()):
-            if not (self.object_index[i] + 2) == self.tabWidget.count():
-                text = self.tabWidget.tabText(self.object_index[i] + 1)
-                listItems.append(text)
+            # if not (self.object_index[i] + 2) == self.tabWidget.count():
+            # text = possibleFilters[]
+            # text = self.tabWidget.tabText(self.object_index[i] + 1)
+            text = possibleFilters[self.applied_filters[i]]['text']
+            listItems.append(text)
         self.sortList.addItems(listItems)
 
     def listDragDrop(self):
@@ -362,10 +393,79 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def listClick(self):
         self.clickedListItem = self.sortList.currentRow()
 
+    def roiUpdate(self):
+        if self.cb_roi.isChecked():
+            if self.roi not in self.label.items():
+                self.label.addItem(self.roi)
+            if self.cb_grey.isChecked():
+                self.roi_image = self.roi.getArrayRegion(self.grey_img, self.label)
+            else:
+                self.roi_image = self.roi.getArrayRegion(self.image, self.label)
+        else:
+            if self.roi in self.label.items():
+                self.label.removeItem(self.roi)
+
+    def rectDetect(self):
+        if self.cb_roi.isChecked():
+            image = self.roi_image
+        else:
+            if self.cb_grey.isChecked():
+                image = self.grey_img
+            else:
+                image = self.image
+
+        image = self.grey_img
+
+        # image should be binary: threshold or canny edge
+        if '0' in self.applied_filters or '10' in self.applied_filters:
+            bla = None
+            minLineLength = 100
+            maxLineGap = 30
+            lines = cv2.HoughLinesP(image, 1, np.pi/180, 50, minLineLength, maxLineGap)
+            bla = np.array(self.initial_image.copy())
+            for x1, y1, x2, y2 in lines[0]:
+                cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 3)
+            """
+            lines = cv2.HoughLines(image, 1, np.pi/180, 200)
+            for rho, theta in lines[0]:
+                a = np.cos(theta)
+                b = np.sin(theta)
+                x0 = a*rho
+                y0 = b*rho
+                x1 = int(x0 + 1000*(-b))
+                y1 = int(y0 + 1000*(a))
+                x2 = int(x0 - 1000*(-b))
+                y2 = int(y0 - 1000*(a))
+
+                cv2.line(self.image, (x1, y1), (x2, y2), (0, 255, 0), 2)
+            """
+            # cv2.line(bla, (0, 0), (200, 200), (0, 255, 255), 5)
+            self.init_image_item.setImage(bla)
+            # self.initial_image = bla.copy()
+            # cv2.imshow("Probabilistic Hough Transform", bla)
+            # cv2.waitKey(0)
+
+        """
+        (contours, _) = cv2.findContours(image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours = sorted(contours, key = cv2.contourArea, reverse = True)
+
+        for c in contours:
+            peri = cv2.arcLength(c, True)
+            approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+
+            if len(approx) == 4: # contour has 4 points (edges)
+                display_contour = approx
+                cv2.drawContours(self.image, display_contour, -1, (0, 255, 0), 3)
+                cv2.drawContours(self.grey_img, display_contour, -1, (0, 255, 0), 3)
+                # break
+        """
+
+"""
 class Empty_tab(QtGui.QWidget, Ui_emptyTab):
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self.setupUi(self)
+"""
 
 def main():
 
