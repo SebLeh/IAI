@@ -24,7 +24,7 @@ possibleDetectors = {
 filter_parameters = {
     '0':    {'name': 'Threshold', 'module': 'cv2', 'funcName': 'threshold',
              'params':  {'0':   {'display': 'Low Threshold', 'name': 'low_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 127},
-                        '1':    {'display': 'Max. Threshold', 'name': 'high_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 255}
+                         '1':    {'display': 'Max. Threshold', 'name': 'high_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 255}
                         }
             },
     '1':    {'name': 'Image Smoothing', 'module': 'cv2', 'funcName': 'blur',
@@ -76,9 +76,9 @@ filter_parameters = {
                         }
             },
     '10':   {'name': 'Canny Edge Detector', 'module': 'cv2', 'funcName': 'Canny',
-             'params':  {'0':   {'display': 'Kernel Size', 'name': 'size', 'type':'int', 'min': 3, 'max': 7, 'value': 3, 'step': 2},
-                        '1':    {'display': 'Low Threshold', 'name': 'low_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 100},
-                        '2':    {'display': 'High Threshold', 'name': 'high_thr', 'type': 'double', 'min': 0, 'max': 255}
+             'params':  {'0':   {'display': 'Kernel Size', 'name': 'size', 'type': 'int', 'min': 3, 'max': 7, 'value': 3, 'step': 2},
+                         '1':    {'display': 'Low Threshold', 'name': 'low_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 100},
+                         '2':    {'display': 'High Threshold', 'name': 'high_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 200}
                         }
             }
 }

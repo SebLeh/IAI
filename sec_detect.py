@@ -44,34 +44,18 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         # self.tabContextMenu = QtGui.QMenu()
 
         self.connect(self.actionOpen, QtCore.SIGNAL('triggered()'), self.openFile)
-        # self.connect(self.scale, QtCore.SIGNAL('valueChanged(double)'), self.updateImage)
+        self.connect(self.scale, QtCore.SIGNAL('valueChanged(double)'), self.updateImage)
         self.connect(self.cb_grey, QtCore.SIGNAL('stateChanged(int)'), self.updateImage)
         self.connect(self.btn_apply, QtCore.SIGNAL('clicked()'), self.updateImage)
         # self.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'), self.closeTab)
         self.connect(self.btn_add, QtCore.SIGNAL('clicked()'), self.addFilter)
         self.connect(self.cb_roi, QtCore.SIGNAL('stateChanged(int)'), self.roiUpdate)
+        self.connect(self.sortList, QtCore.SIGNAL('itemDoubleClicked(QListWidgetItem *)'), self.itemDoubleClicked)
+        self.connect(self.sortList, QtCore.SIGNAL(''))
 
         self.sortList.itemPressed.connect(self.listClick)
         self.sortList.installEventFilter(self)
         self.sortList.setDragDropMode(QtGui.QAbstractItemView.InternalMove)
-
-        """
-        widget1 = Canny_tab()
-        widget2 = Canny_tab()
-        self.filter_area.setWidget(widget1)
-        self.detector_area.setWidget(widget2)
-        print inspect.getcallargs(cv2.Canny, 1, 2, 3)
-        # print inspect.getargspec(cv2.Canny, inspect.isclass(cv2))
-        obj = getattr(cv2, 'Canny')
-        print obj
-        print obj.__name__
-        arginfo = inspect.getargspec(obj)
-        args = arginfo[0]
-        print args
-
-        # print self.openFile.func_code.co_varnames
-        """
-        # self.initTabs()
 
     def openFile(self):
         fileopen = QtGui.QFileDialog()
@@ -106,153 +90,16 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.label.setFixedSize(scaledWidth, scaledHeight)
         self.label_3.setFixedSize(scaledWidth, scaledHeight)
 
-        ###
+
         if self.cb_grey.isChecked() == True:
-            self.imageProcess.update(self.grey_img, self.object_index, self.applied_filters, self.loaded_classes)
+            self.grey_img = self.imageProcess.update(self.grey_img, True, self.object_index, self.applied_filters, self.loaded_classes)
         else:
-            self.imageProcess.update(self.image, self.object_index, self.applied_filters, self.loaded_classes)
-        ###
-
-
-        length = self.object_index.__len__()
-        for i in xrange(length):     #contains order of filters to be applied
-            object_no = -1
             try:
-                object_no = self.applied_filters[self.object_index[i]] #see constant list possible_filters
+                self.image = self.imageProcess.update(self.image, False, self.object_index, self.applied_filters, self.loaded_classes)
             except Exception, e:
-                ### current filter was removed, continue with next
-                ### should not occur; all lists are cleared properly
-                continue
-            index = self.applied_filters.index(object_no)
+                msg = QtGui.QMessageBox.warning(self, 'Image not Greyscale', 'Image should be Greayscale for applying Threshold-Filter.')
 
-            if object_no == '0':  #threshold
-                # set image to greyscale if not already applied
-                self.cb_grey.setChecked(True)
-
-                thresh_type = self.loaded_classes[index].thresh_type()
-                value = self.loaded_classes[index].value()
-                max_value = self.loaded_classes[index].max_value()
-                if thresh_type == 0: #binary
-                    ret, thresh = cv2.threshold(self.grey_img, value, max_value, cv2.THRESH_BINARY)
-                elif thresh_type == 1: #binary inverted
-                    ret, thresh = cv2.threshold(self.grey_img, value, max_value, cv2.THRESH_BINARY_INV)
-                elif thresh_type == 2: #adaptive mean
-                    thresh = cv2.adaptiveThreshold(self.grey_img, max_value, cv2.ADAPTIVE_THRESH_MEAN_C,
-                                                        cv2.THRESH_BINARY, 11, 2)
-                elif thresh_type == 3: #adaptive gaussian
-                    thresh = cv2.adaptiveThreshold(self.grey_img, max_value, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                                        cv2.THRESH_BINARY, 11, 2)
-                elif thresh_type == 4: #otsu
-                    ret, thresh = cv2.threshold(self.grey_img, 0, max_value, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-
-                self.grey_img = thresh
-
-            elif object_no == '1': #smoothing
-                size = self.loaded_classes[index].value()
-                self.grey_img = cv2.blur(self.grey_img, (size, size))
-                self.image = cv2.blur(self.image, (size, size))
-
-            elif object_no == '2': #gauss
-                size = self.loaded_classes[index].value()
-                sigmaX = self.loaded_classes[index].valueX()
-                sigmaY = self.loaded_classes[index].valueY()
-                if sigmaY == 0:
-                    sigmaY = sigmaX
-                self.grey_img = cv2.GaussianBlur(self.grey_img, (size, size), sigmaX=sigmaX, sigmaY=sigmaY)
-                self.image = cv2.GaussianBlur(self.image, (size, size), sigmaX=sigmaX, sigmaY=sigmaY)
-
-            elif object_no == '3': #median
-                size = self.loaded_classes[index].value()
-                self.grey_img = cv2.medianBlur(self.grey_img, size)
-                self.image = cv2.medianBlur(self.image, size)
-
-            elif object_no == '4': #bilateral
-                size = self.loaded_classes[index].value()
-                sigmaSpace = self.loaded_classes[index].valueSpace()
-                sigmaColor = self.loaded_classes[index].valueColor()
-                self.grey_img = cv2.bilateralFilter(self.grey_img, size, sigmaColor, sigmaSpace)
-                self.image = cv2.bilateralFilter(self.image, size, sigmaColor, sigmaSpace)
-
-            elif object_no == '5': #opening
-                size = self.loaded_classes[index].value()
-                iterations = self.loaded_classes[index].valueIterations()
-                kernel = np.ones((size, size), np.uint8)
-                self.grey_img = cv2.morphologyEx(self.grey_img, cv2.MORPH_OPEN, kernel, iterations=iterations)
-                self.image = cv2.morphologyEx(self.image, cv2.MORPH_OPEN, kernel, iterations=iterations)
-
-            elif object_no == '6': #closing
-                size = self.loaded_classes[index].value()
-                iterations = self.loaded_classes[index].valueIterations()
-                kernel = np.ones((size, size), np.uint8)
-                self.grey_img = cv2.morphologyEx(self.grey_img, cv2.MORPH_CLOSE, kernel, iterations=iterations)
-                self.image = cv2.morphologyEx(self.image, cv2.MORPH_CLOSE, kernel, iterations=iterations)
-
-            elif object_no == '7': #morph gradient
-                size = self.loaded_classes[index].value()
-                iterations = self.loaded_classes[index].valueIterations()
-                kernel = np.ones((size, size), np.uint8)
-                self.grey_img = cv2.morphologyEx(self.grey_img, cv2.MORPH_GRADIENT, kernel, iterations=iterations)
-                self.image = cv2.morphologyEx(self.image, cv2.MORPH_GRADIENT, kernel, iterations=iterations)
-
-            elif object_no == '8': #sobel
-                size = self.loaded_classes[index].value()
-                d = self.loaded_classes[index].valueDepth()
-                depth = cv2.CV_64F
-                if d == 0: #16
-                    depth = cv2.CV_16S
-                elif d == 1: #32
-                    depth = cv2.CV_32F
-                elif d == 2: #64
-                    depth = cv2.CV_64F
-                # dX = 0
-                # dY = 0
-                if self.loaded_classes[index].valueDX():
-                    # dX = 1
-                    greyX = cv2.Sobel(self.grey_img, depth, 1, 0, ksize=size)
-                    imgX = cv2.Sobel(self.image, depth, 1, 0, ksize=size)
-                    self.grey_img = greyX
-                    self.image = imgX
-                if self.loaded_classes[index].valueDY():
-                    # dY = 1
-                    greyY = cv2.Sobel(self.grey_img, depth, 0, 1, ksize=size)
-                    imgY = cv2.Sobel(self.image, depth, 0, 1, ksize=size)
-                    self.grey_img = greyY
-                    self.image = imgY
-                # self.grey_img = cv2.Sobel(self.grey_img, depth, dX, dY, ksize=size)
-                if self.loaded_classes[index].valueDX() & self.loaded_classes[index].valueDY():
-                    self.grey_img = cv2.add(greyX, greyY)
-                    self.image = cv2.add(imgX, imgY)
-                    # self.grey_img = greyX + greyY
-                    # self.image = imgX + imgY
-
-            elif object_no == '9': #laplace
-                size = self.loaded_classes[index].value()
-                d = self.loaded_classes[index].valueDepth()
-                depth = cv2.CV_64F
-                if d == 0: #16
-                    depth = cv2.CV_16S
-                elif d == 1: #32
-                    depth = cv2.CV_32F
-                elif d == 2: #64
-                    depth = cv2.CV_64F
-                self.image = cv2.Laplacian(self.image, depth, ksize=size)
-
-            elif object_no == '10': #canny
-                size = self.loaded_classes[index].value()
-                if self.loaded_classes[index].auto_thresh.isChecked():
-                    val, thr_otsu = cv2.threshold(self.grey_img, 0, 255, cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-                    self.grey_img = cv2.Canny(self.grey_img, val*0.5, val, apertureSize=size)
-                    self.image = cv2.Canny(self.image, val*0.5, val, apertureSize=size)
-                    self.loaded_classes[index].low_thresh.setProperty("value", val*0.5)
-                    self.loaded_classes[index].high_thresh.setProperty("value", val)
-
-                else:
-                    low_thr = self.loaded_classes[index].valueLow()
-                    high_thr = self.loaded_classes[index].valueHigh()
-                    self.grey_img = cv2.Canny(self.grey_img, low_thr, high_thr, apertureSize=size)
-                    self.image = cv2.Canny(self.image, low_thr, high_thr, apertureSize=size)
-
-        self.rectDetect()
+        # self.rectDetect()
 
         if self.cb_grey.isChecked():
             self.img_item.setImage(self.grey_img)
@@ -337,22 +184,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     """
 
     def eventFilter(self, object, event):
-        """
-        if object == self.tabWidget.tabBar() and event.type() in \
-            [QtCore.QEvent.MouseButtonPress, QtCore.QEvent.MouseButtonRelease] and \
-            event.button() == QtCore.Qt.RightButton:
-            index = object.tabAt(event.pos())
-            object.setCurrentIndex(index)
-            self.onTabRightClick(object.tabAt(event.pos()))
-            return True
-        elif object == self.tabWidget.tabBar() and event.type() in \
-            [QtCore.QEvent.MouseButtonPress, QtCore.QEvent.MouseButtonRelease] and \
-            event.button() == QtCore.Qt.LeftButton:
-            self.addTab(object.tabAt(event.pos()))
-            return True
-        """
         if object == self.sortList and event.type() == QtCore.QEvent.ChildRemoved:
             self.listDragDrop()
+            return True
+        return False
+        if object == self.sortList and event.type() == QtCore.QEvent.MouseButtonDblClick:
+            self.itemDoubleClicked()
             return True
         return False
 
@@ -459,13 +296,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 cv2.drawContours(self.grey_img, display_contour, -1, (0, 255, 0), 3)
                 # break
         """
+    def itemDoubleClicked(self):
+        index = self.object_index[self.sortList.currentRow()]
+        obj_no = self.applied_filters[index]
+        tempWidget = GenerateWidget(obj_no)
+        tempWidget.recent_values = self.loaded_classes[index].recent_values
+        tempWidget.set()
 
-"""
-class Empty_tab(QtGui.QWidget, Ui_emptyTab):
-    def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-        self.setupUi(self)
-"""
+        self.filter_area.setWidget(tempWidget)
+        self.loaded_classes[self.object_index[index]] = tempWidget
+        # delete this entry, build new widget with previous settings and write to this array index
+
 
 def main():
 
