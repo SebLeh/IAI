@@ -12,6 +12,8 @@ from parameters import possibleFilters
 from parameters import possibleDetectors
 from process import Image
 from filter_widget import GenerateWidget
+from PIL import Image as im
+from PIL import ImageOps
 
 # from empty_ui import Ui_emptyTab
 
@@ -30,18 +32,26 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.clickedListItem = 0
 
         self.roi = pg.RectROI([100, 100], [100, 100], pen=(0, 9))
+        self.roi_image = None
+        self.roi_offset = {0, 0}
 
         self.filename = None
         self.image = None
         self.grey_img = None
         self.initial_image = None
-        self.roi_image = None
         self.img_item = pg.ImageItem()
         self.init_image_item = pg.ImageItem()
         self.label.addItem(self.img_item)
         self.label_3.addItem(self.init_image_item)
 
+        self.contour_widget = GenerateWidget('1', 'detector')
+
+        self.RemoveIcon = im.fromarray(cv2.imread('ressources/delete.png'))
+        self.RemoveIcon = QtGui.QIcon(self.RemoveIcon)
+
         # self.tabContextMenu = QtGui.QMenu()
+
+        self.setup()
 
         self.connect(self.actionOpen, QtCore.SIGNAL('triggered()'), self.openFile)
         self.connect(self.scale, QtCore.SIGNAL('valueChanged(double)'), self.updateImage)
@@ -51,11 +61,22 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.connect(self.btn_add, QtCore.SIGNAL('clicked()'), self.addFilter)
         self.connect(self.cb_roi, QtCore.SIGNAL('stateChanged(int)'), self.roiUpdate)
         self.connect(self.sortList, QtCore.SIGNAL('itemDoubleClicked(QListWidgetItem *)'), self.itemDoubleClicked)
-        self.connect(self.sortList, QtCore.SIGNAL(''))
+        # self.connect(self.sortList, QtCore.SIGNAL('customContextMenuRequested(QPoint *)'), self.itemRightClicked)
+        self.connect(self.combbox_detector, QtCore.SIGNAL('currentIndexChanged(int)'), self.setDetector)
 
         self.sortList.itemPressed.connect(self.listClick)
         self.sortList.installEventFilter(self)
         self.sortList.setDragDropMode(QtGui.QAbstractItemView.InternalMove)
+
+    def setup(self):
+        items = QtCore.QStringList()
+        for i in xrange(possibleDetectors.__len__()):
+            items.append(possibleDetectors[str(i)]['text'])
+        self.combbox_detector.addItems(items)
+
+        self.combbox_detector.setCurrentIndex(1)
+
+        self.detector_area.setWidget(self.contour_widget)
 
     def openFile(self):
         fileopen = QtGui.QFileDialog()
@@ -80,6 +101,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def updateImage(self):
         # if self.image != None:
 
+        self.roiUpdate()
+
         self.image = self.initial_image
         self.grey_img = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
 
@@ -99,7 +122,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             except Exception, e:
                 msg = QtGui.QMessageBox.warning(self, 'Image not Greyscale', 'Image should be Greayscale for applying Threshold-Filter.')
 
-        # self.rectDetect()
+        self.rectDetect()
 
         if self.cb_grey.isChecked():
             self.img_item.setImage(self.grey_img)
@@ -117,7 +140,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 if possibleFilters[str(j)]['text'] == item:
                     # module = __import__(possibleFilters[str(j)]['module_name'])
                     # tab_class = getattr(module, possibleFilters[str(j)]['class'])
-                    new_filter = GenerateWidget(str(j))
+                    new_filter = GenerateWidget(str(j), 'filter')
                     self.loaded_classes.append(new_filter)
                     self.object_index.append(self.object_index.__len__())
                     self.applied_filters.append(j)
@@ -126,70 +149,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     self.filter_area.setWidget(self.loaded_classes[self.loaded_classes.__len__() - 1])
         self.setList()
 
-    """
-    def addTab(self, index):
-        if self.tabWidget.tabText(index) == '+':
-            items = QtCore.QStringList()
-            for i in possibleFilters:
-                items.append(possibleFilters[str(i)]['text'])
-            item, ok = QtGui.QInputDialog.getItem(QtGui.QComboBox(), 'New Filter', 'Select a Filter', items, editable=False)
-            if ok:
-                ### first remove the "+"-tab
-                self.tabWidget.removeTab(self.tabWidget.count() - 1)
-                ### then add the new Tab of the chosen Filter-Type
-                i = 0
-                for j in possibleFilters:
-                    if possibleFilters[str(j)]['text'] == item:
-                        module = __import__(possibleFilters[str(j)]['module_name'])
-                        tab_class = getattr(module, possibleFilters[str(j)]['class'])
-                        new_tab = tab_class()
-                        self.loaded_classes.append(new_tab)
-                        self.object_index.append(self.object_index.__len__())
-                        self.applied_filters.append(j)
-                        self.connect(new_tab, QtCore.SIGNAL('valueUpdated()'), self.updateImage)
-                        i = j
-                self.tabWidget.addTab(new_tab, possibleFilters[str(i)]['text'])
-                ### then add the "+"-tab again
-                empty_tab = Empty_tab()
-                self.tabWidget.addTab(empty_tab, "+")
-                ### set active Tab to new Filter
-                self.tabWidget.setCurrentIndex(self.tabWidget.count() - 2)
-        else:
-            self.tabWidget.setCurrentIndex(index)
-
-        self.setList()
-
-    def setTab(self, index):
-        if self.tabWidget.tabText(index) == '+':
-            self.addTab()
-            self.updateImage()
-
-    def closeTab(self, index):
-        count = self.tabWidget.count()
-        if (index != count - 1) & (index != 0):
-            # the must tab should not be closed, it's the "+"-Tab
-            self.tabWidget.removeTab(index)
-            del(self.loaded_classes[index - 1])     # destroy object so filter is not applied anymore
-            del(self.applied_filters[index - 1])    # remove the list item
-            self.object_index.remove(index - 1)     # remove item which contains the index
-
-            self.updateImage()
-            self.setList()
-
-    def initTabs(self):
-        self.tabWidget.tabBar().installEventFilter(self)
-
-        self.tabContextMenu.addAction(QtGui.QIcon.fromTheme("edit-delete", QtGui.QIcon("ressources/delete.png")),
-                                      "remove Filter", lambda: self.closeTab(self.tabWidget.currentIndex()))
-    """
-
     def eventFilter(self, object, event):
         if object == self.sortList and event.type() == QtCore.QEvent.ChildRemoved:
             self.listDragDrop()
             return True
-        return False
-        if object == self.sortList and event.type() == QtCore.QEvent.MouseButtonDblClick:
-            self.itemDoubleClicked()
+        if object == self.sortList and event.type() == QtCore.QEvent.ContextMenu:
+            self.itemRightClicked()
             return True
         return False
 
@@ -215,7 +180,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 # index = self.sortList.currentRow()
                 clicked = self.object_index[self.clickedListItem]
                 for i in xrange(self.sortList.currentRow() - self.clickedListItem):
-                    self.object_index[i] = self.object_index[i + 1]
+                    self.object_index[i + self.clickedListItem] = self.object_index[i + self.clickedListItem + 1]
                 self.object_index[self.sortList.currentRow()] = clicked
                 # self.object_index[self.clickedListItem] = self.object_index[self.sortList.currentRow()]
             elif self.clickedListItem > self.sortList.currentRow(): # drop-position < drag-position
@@ -225,7 +190,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 # for i in xrange(self.sortList.currentRow() + 1, self.clickedListItem + 1):
                     self.object_index[self.clickedListItem - i] = self.object_index[self.clickedListItem - i - 1]
                 self.object_index[self.sortList.currentRow()] = clicked
-        self.updateImage()
+        # self.updateImage()
 
     def listClick(self):
         self.clickedListItem = self.sortList.currentRow()
@@ -235,47 +200,97 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             if self.roi not in self.label.items():
                 self.label.addItem(self.roi)
             if self.cb_grey.isChecked():
-                self.roi_image = self.roi.getArrayRegion(self.grey_img, self.label)
+                self.roi_image = self.roi.getArrayRegion(self.grey_img, self.img_item)
             else:
-                self.roi_image = self.roi.getArrayRegion(self.image, self.label)
+                self.roi_image = self.roi.getArrayRegion(self.image, self.img_item)
+            self.roi_offset = self.roi.pos()
+            self.roi_offset[0] = int(self.roi_offset[0] / self.scale.value())
+            self.roi_offset[1] = int(self.roi_offset[1] / self.scale.value())
+            # X, Y is switched n this tuple
+            x = self.roi_offset[1]
+            self.roi_offset[1] = self.roi_offset[0]
+            self.roi_offset[0] = x
         else:
             if self.roi in self.label.items():
                 self.label.removeItem(self.roi)
 
     def rectDetect(self):
-        if self.cb_roi.isChecked():
-            image = self.roi_image
-        else:
-            if self.cb_grey.isChecked():
-                image = self.grey_img
-            else:
-                image = self.image
 
         image = self.grey_img
+        im = image
+
+        if self.cb_roi.isChecked():
+            im = self.roi_image
+        else:
+            if self.cb_grey.isChecked():
+                im = self.grey_img
+            else:
+                im = self.image
+        # bla = np.asarray(im.copy(), dtype="uint8", ndim=2)
+        # image = cv2.cvtColor(im, cv2.CV_8U)
 
         # image should be binary: threshold or canny edge
         if '0' in self.applied_filters or '10' in self.applied_filters:
-            bla = None
-            minLineLength = 100
-            maxLineGap = 30
-            lines = cv2.HoughLinesP(image, 1, np.pi/180, 50, minLineLength, maxLineGap)
-            bla = np.array(self.initial_image.copy())
-            for x1, y1, x2, y2 in lines[0]:
-                cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 3)
-            """
-            lines = cv2.HoughLines(image, 1, np.pi/180, 200)
-            for rho, theta in lines[0]:
-                a = np.cos(theta)
-                b = np.sin(theta)
-                x0 = a*rho
-                y0 = b*rho
-                x1 = int(x0 + 1000*(-b))
-                y1 = int(y0 + 1000*(a))
-                x2 = int(x0 - 1000*(-b))
-                y2 = int(y0 - 1000*(a))
+            bla =  np.array(self.initial_image.copy())
+            if self.combbox_detector.currentIndex() == 0:
+                # find countours
+                (contours, _) = cv2.findContours(image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+                contours = sorted(contours, key = cv2.contourArea, reverse = False) # sort found contours by size
 
-                cv2.line(self.image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-            """
+                for c in contours:
+                    peri = cv2.arcLength(c, True)
+                    approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+
+                    i = 0
+                    if len(approx) == 4: # contour has 4 points (edges)
+                        display_contour = approx
+                        cv2.drawContours(bla, display_contour, -1, (0, 255, 0), 10)
+                        value = self.contour_widget.recent_values['results']
+                        if i == value:
+                            break
+                        # cv2.drawContours(self.grey_img, display_contour, -1, (0, 255, 0), 3)
+
+            elif self.combbox_detector.currentIndex() == 1:
+                # probabilistic Hough Lines
+
+                # if self.contour_widget.recent_values['negative'] == True:
+                #     image = ImageOps.invert(image)
+
+                rho = self.contour_widget.recent_values['rho']
+                theta = self.contour_widget.recent_values['theta']
+                thresh = self.contour_widget.recent_values['thresh']
+                minLength = self.contour_widget.recent_values['minLength']
+                maxGap = self.contour_widget.recent_values['maxGap']
+                lines = cv2.HoughLinesP(image, rho, np.pi/theta, thresh, minLength, maxGap)
+                bla = np.array(self.initial_image.copy())
+                for x1, y1, x2, y2 in lines[0]:
+                    """
+                    if self.cb_roi.isChecked():
+                        cv2.line(bla, (x1 + int(self.roi_offset[0]), y1 + int(self.roi_offset[1])),
+                             (x2 + int(self.roi_offset[0]), y2 + int(self.roi_offset[1])), (0, 255, 0), 3)
+                    else:
+                    """
+                    cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 3)
+
+            elif self.combbox_detector.currentIndex() == 2:
+
+                rho = self.contour_widget.recent_values['rho']
+                theta = self.contour_widget.recent_values['theta']
+                thresh = self.contour_widget.recent_values['thresh']
+
+                lines = cv2.HoughLines(image, rho, np.pi/theta, thresh)
+                for rho, theta in lines[0]:
+                    a = np.cos(theta)
+                    b = np.sin(theta)
+                    x0 = a*rho
+                    y0 = b*rho
+                    x1 = int(x0 + 1000*(-b))
+                    y1 = int(y0 + 1000*(a))
+                    x2 = int(x0 - 1000*(-b))
+                    y2 = int(y0 - 1000*(a))
+
+                    cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 2)
+
             # cv2.line(bla, (0, 0), (200, 200), (0, 255, 255), 5)
             self.init_image_item.setImage(bla)
             # self.initial_image = bla.copy()
@@ -299,14 +314,39 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def itemDoubleClicked(self):
         index = self.object_index[self.sortList.currentRow()]
         obj_no = self.applied_filters[index]
-        tempWidget = GenerateWidget(obj_no)
+        tempWidget = GenerateWidget(obj_no, 'filter')
         tempWidget.recent_values = self.loaded_classes[index].recent_values
         tempWidget.set()
 
         self.filter_area.setWidget(tempWidget)
         self.loaded_classes[self.object_index[index]] = tempWidget
-        # delete this entry, build new widget with previous settings and write to this array index
 
+    def itemRightClicked(self):
+        itemIndex = self.sortList.currentRow()
+        self.itemMenu = QtGui.QMenu(self)
+        delAction = self.itemMenu.addAction(self.RemoveIcon, "Remove")
+
+        action = self.itemMenu.exec_(QtGui.QCursor.pos())
+        if action == delAction:
+            self.removeItem(itemIndex)
+        pass
+
+    def setDetector(self):
+        index = self.combbox_detector.currentIndex()
+        self.contour_widget = GenerateWidget(str(index), 'detector')
+
+        self.detector_area.setWidget(self.contour_widget)
+        # pass
+
+    def removeItem(self, index):
+        # need to find correct index for operation, depending on possible rearranging of Items
+        i = self.object_index[index]
+        if self.loaded_classes[i] == self.filter_area.widget():
+            self.filter_area.setWidget(QtGui.QWidget())
+        del(self.loaded_classes[i])     # destroy object so filter is not applied anymore
+        del(self.applied_filters[i])    # remove the list item
+        self.object_index.remove(i)     # remove item which contains the index
+        self.sortList.takeItem(index)
 
 def main():
 

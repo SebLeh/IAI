@@ -1,24 +1,18 @@
 __author__ = 'uleob'
 
 possibleFilters = {
-    '0':{'text': 'Threshold',               'index': 0,     'module_name': 'thresh',     'class': 'Thresh_tab'},
-    '1':{'text': 'Image Smoothing',         'index': 1,     'module_name': 'smooth',     'class': 'Smooth_tab'},
-    '2':{'text': 'Gaussian Blur',           'index': 2,     'module_name': 'gauss',      'class': 'Gauss_tab'},
-    '3':{'text': 'Median Filter',           'index': 3,     'module_name': 'median',     'class': 'Median_tab'},
-    '4':{'text': 'Bilateral Filter',        'index': 4,     'module_name': 'bilateral',  'class': 'Bilateral_tab'},
-    '5':{'text': 'Opening',                 'index': 5,     'module_name': 'opening',    'class': 'Opening_tab'},
-    '6':{'text': 'Closing',                 'index': 6,     'module_name': 'closing',    'class': 'Closing_tab'},
-    '7':{'text': 'Morphological Gradient',  'index': 7,     'module_name': 'morph',      'class': 'Morph_tab'},
-    '8':{'text': 'Sobel Operator',          'index': 8,     'module_name': 'sobel',      'class': 'Sobel_tab'},
-    '9':{'text': 'Laplace Derivate',        'index': 9,     'module_name': 'laplace',    'class': 'Laplace_tab'},
-    '10':{'text': 'Canny Edge Detection',   'index': 10,    'module_name': 'canny',      'class': 'Canny_tab'}
-    # '11':{'text': 'Watershed',              'index': 11,    'module_name': 'watershed',  'class': 'Watershed_tab'}
-}
-
-possibleDetectors = {
-    '0':{'text': 'OpenCV-Contours'},
-    '1':{'text': 'Prob. Hough Lines'},
-    '2':{'text': 'Watershed + Contours'}
+    '0':{'text': 'Threshold'},
+    '1':{'text': 'Image Smoothing'},
+    '2':{'text': 'Gaussian Blur'},
+    '3':{'text': 'Median Filter'},
+    '4':{'text': 'Bilateral Filter'},
+    '5':{'text': 'Opening'},
+    '6':{'text': 'Closing'},
+    '7':{'text': 'Morphological Gradient'},
+    '8':{'text': 'Sobel Operator'},
+    '9':{'text': 'Laplace Derivate'},
+    '10':{'text': 'Canny Edge Detection'},
+    # '11':{'text': 'Watershed'}
 }
 
 filter_parameters = {
@@ -79,6 +73,37 @@ filter_parameters = {
              'params':  {'0':   {'display': 'Kernel Size', 'name': 'size', 'type': 'int', 'min': 3, 'max': 7, 'value': 3, 'step': 2},
                          '1':    {'display': 'Low Threshold', 'name': 'low_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 100},
                          '2':    {'display': 'High Threshold', 'name': 'high_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 200}
-                        }
+                         }
             }
+}
+
+possibleDetectors = {
+    '0':{'text': 'OpenCV-Contours'},
+    '1':{'text': 'Prob. Hough Lines'},
+    '2':{'text': 'Hough Lines'}
+    # '2':{'text': 'Watershed + Contours'}
+}
+
+detector_parameters = {
+    '0':    {'name': 'CV2 Contour Detector', 'module': 'cv2', 'funcName': 'findContours',
+             'params':  {'0': {'display': 'No. of Results (biggest contours)', 'name': 'results', 'type': 'int', 'min': 1, 'value': 20}
+                        }
+
+            },
+    '1':    {'name': 'Prob. Hough Lines', 'module': 'cv2', 'funcName': 'HoughLinesP',
+             'params':  {# '0': {'display': 'Negate Image', 'name': 'negative', 'type': 'bool', 'value': False},
+                         '0': {'display': 'rho (Pixel Step Size)', 'name': 'rho', 'type': 'int', 'min': 1, 'max': 9999, 'value': 1},
+                         '1': {'display': 'theta (Measured Angles)', 'name': 'theta', 'type': 'int', 'min': 1, 'max': 180, 'value': 180},
+                         '2': {'display': 'threshold ("Line Votes")', 'name': 'thresh', 'type': 'int', 'min': 2, 'max': 99999, 'value': 20},
+                         '3': {'display': 'Min. Line Length', 'name': 'minLength', 'type': 'int', 'min': 2, 'max': 99999, 'value': 100},
+                         '4': {'display': 'Max. Line Gap', 'name': 'maxGap', 'type': 'int', 'min': 1, 'max': 99999, 'value': 50}
+                        }
+             },
+    '2':    {'name': 'Hough Lines', 'module': 'cv2', 'funcName': 'HoughLines',
+             'params':  {# '0': {'display': 'Negate Image', 'name': 'negative', 'type': 'bool', 'value': False},
+                         '0': {'display': 'rho (Pixel Step Size)', 'name': 'rho', 'type': 'int', 'min': 1, 'max': 9999, 'value': 1},
+                         '1': {'display': 'theta (Measured Angles)', 'name': 'theta', 'type': 'int', 'min': 1, 'max': 180, 'value': 180},
+                         '2': {'display': 'threshold ("Line Votes")', 'name': 'thresh', 'type': 'int', 'min': 2, 'max': 99999, 'value': 200}
+                        }
+             }
 }

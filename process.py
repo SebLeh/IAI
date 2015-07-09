@@ -52,9 +52,6 @@ class Image():
                 else:
                     # show message
                     raise ValueError('Image not greyscale')
-                    # message = QtGui.QMessageBox("Image not greyscale", "Threshold can only be applied on greyscale images.")
-                    # message.show()
-                    # continue
 
             elif object_no == '1': #smoothing
                 size = loaded_classes[index].recent_values['size']
@@ -172,3 +169,5 @@ class Image():
             return self.grey_img
         else:
             return self.image
+
+    # def contours(self):
