@@ -105,7 +105,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.roiUpdate()
 
         self.image = self.initial_image
-        self.grey_img = cv2.cvtColor(self.image, cv2.COLOR_BGR2GRAY)
+        self.grey_img = cv2.cvtColor(self.image, cv2.COLOR_RGB2GRAY)
 
         scaledWidth = self.scale.value() * self.image.shape[0]
         scaledHeight = self.scale.value() * self.image.shape[1]
@@ -233,26 +233,28 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
     def rectDetect(self):
 
-        image = self.grey_img
-        im = image
-
         if self.cb_roi.isChecked():
-            im = self.roi_image
+            image = self.roi_image
+            image = np.asarray(image, dtype=np.uint8)
+            # image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
+            # image.shape = self.roi.size()
         else:
-            if self.cb_grey.isChecked():
-                im = self.grey_img
-            else:
-                im = self.image
-        # bla = np.asarray(im.copy(), dtype="uint8", ndim=2)
+            image = self.grey_img
         # image = cv2.cvtColor(im, cv2.CV_8U)
 
         # image should be binary: threshold or canny edge
-        if '0' in self.applied_filters or '11' in self.applied_filters:
+        if '0' in self.applied_filters or '1' in self.applied_filters or '11' in self.applied_filters:
             bla =  np.array(self.initial_image.copy())
             if self.combbox_detector.currentIndex() == 0:
                 # find countours
                 (contours, _) = cv2.findContours(image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
                 contours = sorted(contours, key=cv2.contourArea, reverse=True) # sort found contours by size
+
+                if self.cb_roi.isChecked():
+                    for c in contours:
+                        for i in xrange(c.__len__()):
+                            c[i] = c[i] + self.roi_offset
+
 
                 for c in contours:
                     peri = cv2.arcLength(c, True)
@@ -289,15 +291,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 lines = cv2.HoughLinesP(image, rho, np.pi/theta, thresh, minLength, maxGap)
                 bla = np.array(self.initial_image.copy())
                 for x1, y1, x2, y2 in lines[0]:
-                    """
                     if self.cb_roi.isChecked():
                         cv2.line(bla, (x1 + int(self.roi_offset[0]), y1 + int(self.roi_offset[1])),
                              (x2 + int(self.roi_offset[0]), y2 + int(self.roi_offset[1])), (0, 255, 0), 3)
                     else:
-                    """
-                    cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 3)
+                        cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 3)
 
             elif self.combbox_detector.currentIndex() == 2:
+                # Hough Lines
 
                 rho = self.contour_widget.recent_values['rho']
                 theta = self.contour_widget.recent_values['theta']
@@ -314,14 +315,19 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     x2 = int(x0 - 1000*(-b))
                     y2 = int(y0 - 1000*(a))
 
-                    cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                    if self.cb_roi.isChecked():
+                        cv2.line(bla, (x1 + int(self.roi_offset[0]), y1 + int(self.roi_offset[1])),
+                             (x2 + int(self.roi_offset[0]), y2 + int(self.roi_offset[1])), (0, 255, 0), 3)
+                    else:
+                        cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 3)
 
             # cv2.line(bla, (0, 0), (200, 200), (0, 255, 255), 5)
             self.init_image_item.setImage(bla)
             # self.initial_image = bla.copy()
             # cv2.imshow("Probabilistic Hough Transform", bla)
             # cv2.waitKey(0)
-
+        else:
+            self.init_image_item.setImage(self.initial_image)
         """
         (contours, _) = cv2.findContours(image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         contours = sorted(contours, key = cv2.contourArea, reverse = True)
