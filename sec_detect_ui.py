@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sec_detect.ui'
 #
-# Created: Tue Jun 16 13:51:27 2015
+# Created: Thu Jul 09 11:31:43 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(474, 431)
+        MainWindow.resize(474, 437)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -61,9 +61,6 @@ class Ui_MainWindow(object):
         self.cb_grey = QtGui.QCheckBox(self.groupBox)
         self.cb_grey.setObjectName(_fromUtf8("cb_grey"))
         self.gridLayout_3.addWidget(self.cb_grey, 1, 0, 1, 1)
-        self.btn_add = QtGui.QPushButton(self.groupBox)
-        self.btn_add.setObjectName(_fromUtf8("btn_add"))
-        self.gridLayout_3.addWidget(self.btn_add, 5, 1, 1, 1)
         self.combbox_detector = QtGui.QComboBox(self.groupBox)
         self.combbox_detector.setObjectName(_fromUtf8("combbox_detector"))
         self.gridLayout_3.addWidget(self.combbox_detector, 8, 1, 1, 1)
@@ -77,7 +74,7 @@ class Ui_MainWindow(object):
         self.detector_area.setWidgetResizable(True)
         self.detector_area.setObjectName(_fromUtf8("detector_area"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 294, 67))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 294, 63))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.detector_area.setWidget(self.scrollAreaWidgetContents)
         self.gridLayout_3.addWidget(self.detector_area, 9, 0, 1, 2)
@@ -85,13 +82,19 @@ class Ui_MainWindow(object):
         self.filter_area.setWidgetResizable(True)
         self.filter_area.setObjectName(_fromUtf8("filter_area"))
         self.scrollAreaWidgetContents_2 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 294, 67))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 294, 63))
         self.scrollAreaWidgetContents_2.setObjectName(_fromUtf8("scrollAreaWidgetContents_2"))
         self.filter_area.setWidget(self.scrollAreaWidgetContents_2)
         self.gridLayout_3.addWidget(self.filter_area, 7, 0, 1, 2)
+        self.cb_inv = QtGui.QCheckBox(self.groupBox)
+        self.cb_inv.setObjectName(_fromUtf8("cb_inv"))
+        self.gridLayout_3.addWidget(self.cb_inv, 3, 0, 1, 1)
         self.btn_apply = QtGui.QPushButton(self.groupBox)
         self.btn_apply.setObjectName(_fromUtf8("btn_apply"))
         self.gridLayout_3.addWidget(self.btn_apply, 2, 1, 1, 1)
+        self.btn_add = QtGui.QPushButton(self.groupBox)
+        self.btn_add.setObjectName(_fromUtf8("btn_add"))
+        self.gridLayout_3.addWidget(self.btn_add, 3, 1, 1, 1)
         self.gridLayout.addWidget(self.groupBox, 0, 3, 2, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
@@ -136,9 +139,10 @@ class Ui_MainWindow(object):
         self.lbl_scale.setText(_translate("MainWindow", "Scale:", None))
         self.cb_roi.setText(_translate("MainWindow", "Activate ROI", None))
         self.cb_grey.setText(_translate("MainWindow", "Greyscale", None))
-        self.btn_add.setText(_translate("MainWindow", "Add new Filter", None))
         self.label_4.setText(_translate("MainWindow", "Select Type of Contour Detector", None))
+        self.cb_inv.setText(_translate("MainWindow", "Invert Image Colors", None))
         self.btn_apply.setText(_translate("MainWindow", "Apply Changes", None))
+        self.btn_add.setText(_translate("MainWindow", "Add new Filter", None))
         self.menuFile.setTitle(_translate("MainWindow", "File", None))
         self.menuFilter_Settings.setTitle(_translate("MainWindow", "Filter Settings", None))
         self.actionOpen.setText(_translate("MainWindow", "Open", None))

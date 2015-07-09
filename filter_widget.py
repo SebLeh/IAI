@@ -21,7 +21,11 @@ class GenerateWidget(QtGui.QWidget):
                 self.recent_values[str(self.params[str(i)].accessibleName())] = self.params[str(i)].value()
             except Exception, e:
                 # checkbox has no "value" that can be read
-                self.recent_values[str(self.params[str(i)].accessibleName())] = self.params[str(i)].isChecked()
+                try:
+                    self.recent_values[str(self.params[str(i)].accessibleName())] = self.params[str(i)].isChecked()
+                except Exception, e:
+                    self.recent_values[str(self.params[str(i)].accessibleName())] = self.params[str(i)].currentIndex()
+
 
     def set(self):
         for i in xrange(self.params.__len__()):
@@ -29,7 +33,10 @@ class GenerateWidget(QtGui.QWidget):
                 self.params[str(i)].setValue(self.recent_values[str(self.params[str(i)].accessibleName())])
             except Exception, e:
                 # checkbox has no "value" that can be set
-                self.params[str(i)].setChecked(self.recent_values[str(self.params[str(i)].accessibleName())])
+                try:
+                    self.params[str(i)].setChecked(self.recent_values[str(self.params[str(i)].accessibleName())])
+                except Exception, e:
+                    self.params[str(i)].setCurrentIndex(self.recent_values[str(self.params[str(i)].accessibleName())])
 
     def setup(self):
         """
@@ -67,6 +74,11 @@ class GenerateWidget(QtGui.QWidget):
                 param.setText(parameters[self.num]['params'][str(i)]['display'])
                 param.setChecked(parameters[self.num]['params'][str(i)]['value'])
                 param.setAccessibleName(parameters[self.num]['params'][str(i)]['name'])
+            elif parameters[self.num]['params'][str(i)]['type'] == 'drop-down':
+                param = QtGui.QComboBox()
+                param.setAccessibleName(parameters[self.num]['params'][str(i)]['name'])
+                for j in xrange(parameters[self.num]['params'][str(i)]['values'].__len__()):
+                    param.addItem(parameters[self.num]['params'][str(i)]['values'][j])
             try:
                 param.setMinimum(parameters[self.num]['params'][str(i)]['min'])
             except Exception, e:
@@ -84,8 +96,12 @@ class GenerateWidget(QtGui.QWidget):
                 param.valueChanged.connect(self.update)
             except Exception, e:
                 # checkbox has no "value"
-                self.recent_values[parameters[self.num]['params'][str(i)]['name']] = param.isChecked()
-                param.stateChanged.connect(self.update)
+                try:
+                    self.recent_values[parameters[self.num]['params'][str(i)]['name']] = param.isChecked()
+                    param.stateChanged.connect(self.update)
+                except Exception, e:
+                    self.recent_values[parameters[self.num]['params'][str(i)]['name']] = param.currentIndex()
+                    param.currentIndexChanged.connect(self.update)
             self.params[str(i)] = param
             self.grid.addWidget(param, i+1, 1)
 

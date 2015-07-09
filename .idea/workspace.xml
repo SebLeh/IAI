@@ -2,47 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32cdf292-f7e0-4268-a018-2070f02daf22" name="Default" comment="built all hull classes for class-loader">
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\bilateral.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\bilateral_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\bilateral_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\canny.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\canny_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\canny_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\closing.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\closing_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\closing_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\gauss.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\gauss_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\gauss_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\laplace.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\laplace_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\laplace_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\median.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\median_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\median_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\morph.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\morph_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\morph_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\opening.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\opening_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\opening_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\smooth.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\smooth_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\smooth_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\sobel.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\sobel_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\sobel_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\tab3.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\tab3_ui.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\tab_ui_to_py.bat" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\thresh.py" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\thresh_tab.ui" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\uleob\Desktop\Sec Detector\thresh_ui.py" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect.ui" afterPath="$PROJECT_DIR$/sec_detect.ui" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/filter_widget.py" afterPath="$PROJECT_DIR$/filter_widget.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/parameters.py" afterPath="$PROJECT_DIR$/parameters.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/process.py" afterPath="$PROJECT_DIR$/process.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect.py" afterPath="$PROJECT_DIR$/sec_detect.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sec_detect_ui.py" afterPath="$PROJECT_DIR$/sec_detect_ui.py" />
     </list>
     <ignored path="section detector.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,8 +34,8 @@
       <file leaf-file-name="sec_detect.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sec_detect.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25847954" vertical-offset="0" max-vertical-offset="6222">
-              <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.4367347" vertical-offset="6076" max-vertical-offset="6647">
+              <caret line="370" column="89" selection-start-line="370" selection-start-column="89" selection-end-line="370" selection-end-column="89" />
               <folding>
                 <element signature="e#45#67#0" expanded="true" />
               </folding>
@@ -81,8 +46,8 @@
       <file leaf-file-name="process.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/process.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3026">
-              <caret line="164" column="21" selection-start-line="164" selection-start-column="21" selection-end-line="165" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3553">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding>
                 <element signature="e#22#32#0" expanded="true" />
               </folding>
@@ -93,8 +58,8 @@
       <file leaf-file-name="parameters.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/parameters.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="1938">
-              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2176">
+              <caret line="83" column="81" selection-start-line="83" selection-start-column="81" selection-end-line="83" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -103,8 +68,8 @@
       <file leaf-file-name="filter_widget.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/filter_widget.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1666">
-              <caret line="20" column="95" selection-start-line="20" selection-start-column="95" selection-end-line="20" selection-end-column="95" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1376" max-vertical-offset="1938">
+              <caret line="94" column="72" selection-start-line="94" selection-start-column="72" selection-end-line="94" selection-end-column="72" />
               <folding>
                 <element signature="e#45#76#0" expanded="true" />
               </folding>
@@ -115,8 +80,8 @@
       <file leaf-file-name="sec_detect_ui.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_detect_ui.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="934" max-vertical-offset="2669">
-              <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2005" max-vertical-offset="2737">
+              <caret line="128" column="52" selection-start-line="128" selection-start-column="52" selection-end-line="128" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -173,10 +138,10 @@
         <option value="$PROJECT_DIR$/laplace.py" />
         <option value="$PROJECT_DIR$/canny.py" />
         <option value="$PROJECT_DIR$/ui_generator_test.py" />
-        <option value="$PROJECT_DIR$/sec_detect_ui.py" />
         <option value="$PROJECT_DIR$/filter_widget.py" />
-        <option value="$PROJECT_DIR$/process.py" />
+        <option value="$PROJECT_DIR$/sec_detect_ui.py" />
         <option value="$PROJECT_DIR$/parameters.py" />
+        <option value="$PROJECT_DIR$/process.py" />
         <option value="$PROJECT_DIR$/sec_detect.py" />
       </list>
     </option>
@@ -510,7 +475,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1296" height="1000" extended-state="7" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -520,19 +485,19 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4082774" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277405" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32997763" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4082774" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -557,19 +522,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sec_detect.py</url>
-          <line>342</line>
-          <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sec_detect.py</url>
-          <line>263</line>
-          <option name="timeStamp" value="139" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/sec_detect.py</url>
-          <line>228</line>
-          <option name="timeStamp" value="141" />
+          <url>file://$PROJECT_DIR$/process.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="142" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -582,7 +537,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="142" />
+      <option name="time" value="147" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -738,6 +693,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5903614" vertical-offset="37327" max-vertical-offset="37825">
           <caret line="2216" column="0" selection-start-line="2216" selection-start-column="0" selection-end-line="2217" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -810,8 +766,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/filter_widget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="1666">
-          <caret line="20" column="95" selection-start-line="20" selection-start-column="95" selection-end-line="20" selection-end-column="95" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1376" max-vertical-offset="1938">
+          <caret line="94" column="72" selection-start-line="94" selection-start-column="72" selection-end-line="94" selection-end-column="72" />
           <folding>
             <element signature="e#45#76#0" expanded="true" />
           </folding>
@@ -820,24 +776,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_detect_ui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="934" max-vertical-offset="2669">
-          <caret line="66" column="24" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2005" max-vertical-offset="2737">
+          <caret line="128" column="52" selection-start-line="128" selection-start-column="52" selection-end-line="128" selection-end-column="52" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/parameters.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1206" max-vertical-offset="1938">
-          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1071" max-vertical-offset="2176">
+          <caret line="83" column="81" selection-start-line="83" selection-start-column="81" selection-end-line="83" selection-end-column="81" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/process.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3026">
-          <caret line="164" column="21" selection-start-line="164" selection-start-column="21" selection-end-line="165" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3553">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
             <element signature="e#22#32#0" expanded="true" />
           </folding>
@@ -846,8 +802,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_detect.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25847954" vertical-offset="0" max-vertical-offset="6222">
-          <caret line="13" column="9" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.4367347" vertical-offset="6076" max-vertical-offset="6647">
+          <caret line="370" column="89" selection-start-line="370" selection-start-column="89" selection-end-line="370" selection-end-column="89" />
           <folding>
             <element signature="e#45#67#0" expanded="true" />
           </folding>

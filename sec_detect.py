@@ -56,6 +56,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.connect(self.actionOpen, QtCore.SIGNAL('triggered()'), self.openFile)
         self.connect(self.scale, QtCore.SIGNAL('valueChanged(double)'), self.updateImage)
         self.connect(self.cb_grey, QtCore.SIGNAL('stateChanged(int)'), self.updateImage)
+        self.connect(self.cb_inv, QtCore.SIGNAL('stateChanged(int)'), self.updateImage)
         self.connect(self.btn_apply, QtCore.SIGNAL('clicked()'), self.updateImage)
         # self.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'), self.closeTab)
         self.connect(self.btn_add, QtCore.SIGNAL('clicked()'), self.addFilter)
@@ -113,8 +114,24 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.label.setFixedSize(scaledWidth, scaledHeight)
         self.label_3.setFixedSize(scaledWidth, scaledHeight)
 
+        if self.cb_inv.isChecked():
+            img255 = np.empty_like(self.image)
+            img255.fill(255)
+            inverted = img255 - self.image
+            self.image = inverted
+            img255 = np.empty_like(self.grey_img)
+            img255.fill(255)
+            inverted = img255 - self.grey_img
+            self.grey_img = inverted
 
-        if self.cb_grey.isChecked() == True:
+            """
+            inv_image = ImageOps.invert(self.image)
+            self.image = inv_image
+            inv_image = ImageOps.invert(self.grey_img)
+            self.grey_img = inv_image
+            """
+
+        if self.cb_grey.isChecked():
             self.grey_img = self.imageProcess.update(self.grey_img, True, self.object_index, self.applied_filters, self.loaded_classes)
         else:
             try:
@@ -230,25 +247,33 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         # image = cv2.cvtColor(im, cv2.CV_8U)
 
         # image should be binary: threshold or canny edge
-        if '0' in self.applied_filters or '10' in self.applied_filters:
+        if '0' in self.applied_filters or '11' in self.applied_filters:
             bla =  np.array(self.initial_image.copy())
             if self.combbox_detector.currentIndex() == 0:
                 # find countours
                 (contours, _) = cv2.findContours(image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-                contours = sorted(contours, key = cv2.contourArea, reverse = False) # sort found contours by size
+                contours = sorted(contours, key=cv2.contourArea, reverse=True) # sort found contours by size
 
                 for c in contours:
                     peri = cv2.arcLength(c, True)
                     approx = cv2.approxPolyDP(c, 0.02 * peri, True)
 
                     i = 0
-                    if len(approx) == 4: # contour has 4 points (edges)
+                    if self.contour_widget.recent_values['rectangles']:
+                        if len(approx) == 4: # contour has 4 points (edges)
+                            display_contour = approx
+                            cv2.drawContours(bla, display_contour, -1, (0, 255, 0), 10)
+                            value = self.contour_widget.recent_values['results']
+                            if i == value:
+                                break
+                    else:
                         display_contour = approx
                         cv2.drawContours(bla, display_contour, -1, (0, 255, 0), 10)
                         value = self.contour_widget.recent_values['results']
                         if i == value:
                             break
-                        # cv2.drawContours(self.grey_img, display_contour, -1, (0, 255, 0), 3)
+
+                            # cv2.drawContours(self.grey_img, display_contour, -1, (0, 255, 0), 3)
 
             elif self.combbox_detector.currentIndex() == 1:
                 # probabilistic Hough Lines
