@@ -20,7 +20,7 @@ filter_parameters = {
     '0':    {'name': 'Threshold simple', 'module': 'cv2', 'funcName': 'threshold',
              'params':  {'0':    {'display': 'Threshold Type', 'name': 'type', 'type': 'drop-down', 'value': 0, 'values':
                                         {0: 'Binary', 1: 'Binary inverted', 2: 'Otsu'} },
-                         '1':    {'display': 'Low Threshold', 'name': 'low_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 127},
+                         '1':    {'display': 'Low Threshold', 'name': 'low_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 140},
                          '2':    {'display': 'Max. Threshold', 'name': 'high_thr', 'type': 'double', 'min': 0, 'max': 255, 'value': 255},
                          '3':    {'display': 'Invert Output', 'name': 'invert', 'type': 'bool', 'value': False}
                         }
@@ -110,7 +110,7 @@ detector_parameters = {
                          '1': {'display': 'theta (Measured Angles)', 'name': 'theta', 'type': 'int', 'min': 1, 'max': 180, 'value': 180},
                          '2': {'display': 'threshold ("Line Votes")', 'name': 'thresh', 'type': 'int', 'min': 2, 'max': 99999, 'value': 20},
                          '3': {'display': 'Min. Line Length', 'name': 'minLength', 'type': 'int', 'min': 2, 'max': 99999, 'value': 100},
-                         '4': {'display': 'Max. Line Gap', 'name': 'maxGap', 'type': 'int', 'min': 1, 'max': 99999, 'value': 50}
+                         '4': {'display': 'Max. Line Gap', 'name': 'maxGap', 'type': 'int', 'min': 1, 'max': 99999, 'value': 100}
                         }
              },
     '2':    {'name': 'Hough Lines', 'module': 'cv2', 'funcName': 'HoughLines',

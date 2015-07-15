@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sec_detect.ui'
 #
-# Created: Thu Jul 09 11:31:43 2015
+# Created: Wed Jul 15 09:19:58 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(474, 437)
+        MainWindow.resize(474, 456)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -65,6 +65,7 @@ class Ui_MainWindow(object):
         self.combbox_detector.setObjectName(_fromUtf8("combbox_detector"))
         self.gridLayout_3.addWidget(self.combbox_detector, 8, 1, 1, 1)
         self.sortList = QtGui.QListWidget(self.groupBox)
+        self.sortList.setMaximumSize(QtCore.QSize(16777215, 100))
         self.sortList.setObjectName(_fromUtf8("sortList"))
         self.gridLayout_3.addWidget(self.sortList, 6, 0, 1, 2)
         self.label_4 = QtGui.QLabel(self.groupBox)
@@ -74,7 +75,7 @@ class Ui_MainWindow(object):
         self.detector_area.setWidgetResizable(True)
         self.detector_area.setObjectName(_fromUtf8("detector_area"))
         self.scrollAreaWidgetContents = QtGui.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 294, 63))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 294, 69))
         self.scrollAreaWidgetContents.setObjectName(_fromUtf8("scrollAreaWidgetContents"))
         self.detector_area.setWidget(self.scrollAreaWidgetContents)
         self.gridLayout_3.addWidget(self.detector_area, 9, 0, 1, 2)
@@ -82,7 +83,7 @@ class Ui_MainWindow(object):
         self.filter_area.setWidgetResizable(True)
         self.filter_area.setObjectName(_fromUtf8("filter_area"))
         self.scrollAreaWidgetContents_2 = QtGui.QWidget()
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 294, 63))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 294, 69))
         self.scrollAreaWidgetContents_2.setObjectName(_fromUtf8("scrollAreaWidgetContents_2"))
         self.filter_area.setWidget(self.scrollAreaWidgetContents_2)
         self.gridLayout_3.addWidget(self.filter_area, 7, 0, 1, 2)

@@ -82,7 +82,7 @@ class Image():
             elif object_no == '3': #gauss
                 size = loaded_classes[index].recent_values['size']
                 sigmaX = loaded_classes[index].recent_values['sigmaX']
-                sigmaY = loaded_classes[index].recent_values['SigmaY']
+                sigmaY = loaded_classes[index].recent_values['sigmaY']
                 if sigmaY == 0:
                     sigmaY = sigmaX
                 if grey:

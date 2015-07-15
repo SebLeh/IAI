@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>474</width>
-    <height>437</height>
+    <height>456</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -83,7 +83,14 @@
         <widget class="QComboBox" name="combbox_detector"/>
        </item>
        <item row="6" column="0" colspan="2">
-        <widget class="QListWidget" name="sortList"/>
+        <widget class="QListWidget" name="sortList">
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>100</height>
+          </size>
+         </property>
+        </widget>
        </item>
        <item row="8" column="0">
         <widget class="QLabel" name="label_4">
@@ -103,7 +110,7 @@
             <x>0</x>
             <y>0</y>
             <width>294</width>
-            <height>63</height>
+            <height>69</height>
            </rect>
           </property>
          </widget>
@@ -120,7 +127,7 @@
             <x>0</x>
             <y>0</y>
             <width>294</width>
-            <height>63</height>
+            <height>69</height>
            </rect>
           </property>
          </widget>

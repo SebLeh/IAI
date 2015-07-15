@@ -133,18 +133,22 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         if self.cb_grey.isChecked():
             self.grey_img = self.imageProcess.update(self.grey_img, True, self.object_index, self.applied_filters, self.loaded_classes)
+            self.img_item.setImage(self.grey_img)
         else:
             try:
                 self.image = self.imageProcess.update(self.image, False, self.object_index, self.applied_filters, self.loaded_classes)
+                self.img_item.setImage(self.image)
             except Exception, e:
                 msg = QtGui.QMessageBox.warning(self, 'Image not Greyscale', 'Image should be Greayscale for applying Threshold-Filter.')
 
         self.rectDetect()
 
+        """
         if self.cb_grey.isChecked():
             self.img_item.setImage(self.grey_img)
         else:
             self.img_item.setImage(self.image)
+        """
 
     def addFilter(self):
         items = QtCore.QStringList()
@@ -377,6 +381,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         del(self.loaded_classes[i])     # destroy object so filter is not applied anymore
         del(self.applied_filters[i])    # remove the list item
         self.object_index.remove(i)     # remove item which contains the index
+        for j in xrange(self.object_index.__len__()):
+            if self.object_index[j] > i:
+                self.object_index[j] = self.object_index[j] - 1
         self.sortList.takeItem(index)
 
 def main():
