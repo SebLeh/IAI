@@ -162,8 +162,28 @@ class Image():
                 depth = cv2.CV_64F
                 if grey:
                     self.grey_img = cv2.Laplacian(self.grey_img, depth, ksize=size)
+                    # Normalizing Image to 0-255 values:
+                    img_dif = np.empty_like(self.grey_img)
+                    min = np.amin(self.grey_img)
+                    img_dif.fill(abs(min))
+                    self.grey_img = self.grey_img + img_dif
+                    max = np.amax(self.grey_img)
+                    factor = 255/max
+                    self.grey_img = self.grey_img * factor
+                    self.grey_img = self.grey_img.astype(np.uint8)
                 else:
                     self.image = cv2.Laplacian(self.image, depth, ksize=size)
+                    # Normalizing Image to 0-255 values:
+                    img_dif = np.empty_like(self.image)
+                    min = np.amin(self.image)
+                    img_dif.fill(abs(min))
+                    self.image = self.image + img_dif
+                    max = np.amax(self.image)
+                    factor = 255/max
+                    self.image = self.image * factor
+                    self.image = self.image.astype(np.uint8)
+                    pass
+
 
             elif object_no == '11': #canny
                 size = loaded_classes[index].recent_values['size']

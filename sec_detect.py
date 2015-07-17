@@ -124,13 +124,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             inverted = img255 - self.grey_img
             self.grey_img = inverted
 
-            """
-            inv_image = ImageOps.invert(self.image)
-            self.image = inv_image
-            inv_image = ImageOps.invert(self.grey_img)
-            self.grey_img = inv_image
-            """
-
         if self.cb_grey.isChecked():
             self.grey_img = self.imageProcess.update(self.grey_img, True, self.object_index, self.applied_filters, self.loaded_classes)
             self.img_item.setImage(self.grey_img)
@@ -143,13 +136,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
 
         self.rectDetect()
 
-        """
-        if self.cb_grey.isChecked():
-            self.img_item.setImage(self.grey_img)
-        else:
-            self.img_item.setImage(self.image)
-        """
-
     def addFilter(self):
         items = QtCore.QStringList()
         for i in possibleFilters:
@@ -159,8 +145,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
             i = 0
             for j in possibleFilters:
                 if possibleFilters[str(j)]['text'] == item:
-                    # module = __import__(possibleFilters[str(j)]['module_name'])
-                    # tab_class = getattr(module, possibleFilters[str(j)]['class'])
                     new_filter = GenerateWidget(str(j), 'filter')
                     self.loaded_classes.append(new_filter)
                     self.object_index.append(self.object_index.__len__())
@@ -188,9 +172,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.sortList.clear()
         listItems = QtCore.QStringList()
         for i in xrange(self.object_index.__len__()):
-            # if not (self.object_index[i] + 2) == self.tabWidget.count():
-            # text = possibleFilters[]
-            # text = self.tabWidget.tabText(self.object_index[i] + 1)
             text = possibleFilters[self.applied_filters[i]]['text']
             listItems.append(text)
         self.sortList.addItems(listItems)
@@ -240,12 +221,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         if self.cb_roi.isChecked():
             image = self.roi_image
             image = np.asarray(image, dtype=np.uint8)
-            # image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
-            # image.shape = self.roi.size()
         else:
             image = self.grey_img
-        # image = cv2.cvtColor(im, cv2.CV_8U)
-
         # image should be binary: threshold or canny edge
         if '0' in self.applied_filters or '1' in self.applied_filters or '11' in self.applied_filters:
             bla =  np.array(self.initial_image.copy())
@@ -258,7 +235,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                     for c in contours:
                         for i in xrange(c.__len__()):
                             c[i] = c[i] + self.roi_offset
-
 
                 for c in contours:
                     peri = cv2.arcLength(c, True)
@@ -279,13 +255,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                         if i == value:
                             break
 
-                            # cv2.drawContours(self.grey_img, display_contour, -1, (0, 255, 0), 3)
-
             elif self.combbox_detector.currentIndex() == 1:
                 # probabilistic Hough Lines
-
-                # if self.contour_widget.recent_values['negative'] == True:
-                #     image = ImageOps.invert(image)
 
                 rho = self.contour_widget.recent_values['rho']
                 theta = self.contour_widget.recent_values['theta']
@@ -324,28 +295,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                              (x2 + int(self.roi_offset[0]), y2 + int(self.roi_offset[1])), (0, 255, 0), 3)
                     else:
                         cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 3)
-
-            # cv2.line(bla, (0, 0), (200, 200), (0, 255, 255), 5)
             self.init_image_item.setImage(bla)
-            # self.initial_image = bla.copy()
-            # cv2.imshow("Probabilistic Hough Transform", bla)
-            # cv2.waitKey(0)
         else:
             self.init_image_item.setImage(self.initial_image)
-        """
-        (contours, _) = cv2.findContours(image.copy(), cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-        contours = sorted(contours, key = cv2.contourArea, reverse = True)
 
-        for c in contours:
-            peri = cv2.arcLength(c, True)
-            approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-
-            if len(approx) == 4: # contour has 4 points (edges)
-                display_contour = approx
-                cv2.drawContours(self.image, display_contour, -1, (0, 255, 0), 3)
-                cv2.drawContours(self.grey_img, display_contour, -1, (0, 255, 0), 3)
-                # break
-        """
     def itemDoubleClicked(self):
         index = self.object_index[self.sortList.currentRow()]
         obj_no = self.applied_filters[index]
@@ -354,7 +307,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         tempWidget.set()
 
         self.filter_area.setWidget(tempWidget)
-        self.loaded_classes[self.object_index[index]] = tempWidget
 
     def itemRightClicked(self):
         itemIndex = self.sortList.currentRow()
@@ -381,7 +333,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         del(self.loaded_classes[i])     # destroy object so filter is not applied anymore
         del(self.applied_filters[i])    # remove the list item
         self.object_index.remove(i)     # remove item which contains the index
-        for j in xrange(self.object_index.__len__()):
+        for j in xrange(self.object_index.__len__()): # reduce higher indexes to contain continuity
             if self.object_index[j] > i:
                 self.object_index[j] = self.object_index[j] - 1
         self.sortList.takeItem(index)

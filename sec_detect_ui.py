@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'sec_detect.ui'
 #
-# Created: Wed Jul 15 09:19:58 2015
+# Created: Fri Jul 17 14:25:51 2015
 #      by: PyQt4 UI code generator 4.11.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,7 +26,7 @@ except AttributeError:
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName(_fromUtf8("MainWindow"))
-        MainWindow.resize(474, 456)
+        MainWindow.resize(474, 458)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
@@ -143,7 +143,9 @@ class Ui_MainWindow(object):
         self.label_4.setText(_translate("MainWindow", "Select Type of Contour Detector", None))
         self.cb_inv.setText(_translate("MainWindow", "Invert Image Colors", None))
         self.btn_apply.setText(_translate("MainWindow", "Apply Changes", None))
+        self.btn_apply.setShortcut(_translate("MainWindow", "Ctrl+Return", None))
         self.btn_add.setText(_translate("MainWindow", "Add new Filter", None))
+        self.btn_add.setShortcut(_translate("MainWindow", "Ctrl+A", None))
         self.menuFile.setTitle(_translate("MainWindow", "File", None))
         self.menuFilter_Settings.setTitle(_translate("MainWindow", "Filter Settings", None))
         self.actionOpen.setText(_translate("MainWindow", "Open", None))
