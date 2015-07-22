@@ -5,6 +5,7 @@ import pyqtgraph as pg
 import numpy as np
 import cv2
 import sys
+import pickle
 # import inspect
 from PyQt4 import QtGui, QtCore
 from sec_detect_ui import Ui_MainWindow
@@ -13,6 +14,7 @@ from parameters import possibleDetectors
 from process import Image
 from filter_widget import GenerateWidget
 from PIL import Image as im
+from tools import Tools
 from PIL import ImageOps
 
 # from empty_ui import Ui_emptyTab
@@ -25,6 +27,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
 
         self.imageProcess = Image()
+        self.tools = Tools()
 
         self.loaded_classes = []    # for all loaded widgets
         self.object_index = []      # for the order of filters
@@ -58,12 +61,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.connect(self.cb_grey, QtCore.SIGNAL('stateChanged(int)'), self.updateImage)
         self.connect(self.cb_inv, QtCore.SIGNAL('stateChanged(int)'), self.updateImage)
         self.connect(self.btn_apply, QtCore.SIGNAL('clicked()'), self.updateImage)
-        # self.connect(self.tabWidget, QtCore.SIGNAL('tabCloseRequested(int)'), self.closeTab)
         self.connect(self.btn_add, QtCore.SIGNAL('clicked()'), self.addFilter)
         self.connect(self.cb_roi, QtCore.SIGNAL('stateChanged(int)'), self.roiUpdate)
         self.connect(self.sortList, QtCore.SIGNAL('itemDoubleClicked(QListWidgetItem *)'), self.itemDoubleClicked)
-        # self.connect(self.sortList, QtCore.SIGNAL('customContextMenuRequested(QPoint *)'), self.itemRightClicked)
         self.connect(self.combbox_detector, QtCore.SIGNAL('currentIndexChanged(int)'), self.setDetector)
+        self.connect(self.actionSave_Settings, QtCore.SIGNAL('triggered()'), self.saveSettings)
+        self.connect(self.actionLoad_settings, QtCore.SIGNAL('triggered()'), self.loadSettings)
 
         self.sortList.itemPressed.connect(self.listClick)
         self.sortList.installEventFilter(self)
@@ -80,22 +83,11 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.detector_area.setWidget(self.contour_widget)
 
     def openFile(self):
-        fileopen = QtGui.QFileDialog()
-        filename = fileopen.getOpenFileName(fileopen, u'Datei öffnen', '', 'Bild-Dateien (*.png *.jpg *.bmp)')
-        self.filename = str(filename)
-        try:
-            self.image = cv2.imread(self.filename)
-            self.image = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
-            self.image = self.image[:, :, :3]
-            self.image = self.image.transpose((1, 0, 2))
-            self.initial_image = self.image
-            # self.image = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
-            self.grey_img = cv2.cvtColor(self.image, cv2.COLOR_RGB2GRAY)
-            self.img_item.setImage(self.image)
-            self.init_image_item.setImage(self.initial_image)
-        except Exception, e:
-            print(e)
-            print("No file selected?")
+        self.initial_image = self.tools.openFile()
+        self.image = self.initial_image.copy()
+        self.grey_img = cv2.cvtColor(self.image.copy(), cv2.COLOR_RGB2GRAY)
+        self.img_item.setImage(self.image)
+        self.init_image_item.setImage(self.initial_image)
 
         self.updateImage()
 
@@ -265,12 +257,28 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 maxGap = self.contour_widget.recent_values['maxGap']
                 lines = cv2.HoughLinesP(image, rho, np.pi/theta, thresh, minLength, maxGap)
                 bla = np.array(self.initial_image.copy())
+                new = np.empty_like(bla)   # this image is for finding a bounding box (or similar) on found contours
                 for x1, y1, x2, y2 in lines[0]:
                     if self.cb_roi.isChecked():
                         cv2.line(bla, (x1 + int(self.roi_offset[0]), y1 + int(self.roi_offset[1])),
                              (x2 + int(self.roi_offset[0]), y2 + int(self.roi_offset[1])), (0, 255, 0), 3)
                     else:
                         cv2.line(bla, (x1, y1), (x2, y2), (0, 255, 0), 3)
+                        cv2.line(new, (x1, y1), (x2, y2), (255, 255, 255), 3)
+
+                """
+                # cv2.imshow('bla', new)
+                # ---> Dilation!
+
+                new = cv2.cvtColor(new, cv2.COLOR_RGB2GRAY)
+                ret, thresh = cv2.threshold(new, 127, 255, cv2.THRESH_BINARY)
+                # cv2.imshow('threshold', thresh)
+                contours, hierarchy = cv2.findContours(thresh, 1, 2)
+                cnt = contours[0]
+                epsilon = 0.1*cv2.arcLength(cnt,True)
+                approx = cv2.approxPolyDP(cnt,epsilon,True)
+                cv2.polylines(bla, approx, True, (255, 0, 0), 3)
+                """
 
             elif self.combbox_detector.currentIndex() == 2:
                 # Hough Lines
@@ -338,6 +346,51 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
                 self.object_index[j] = self.object_index[j] - 1
         self.sortList.takeItem(index)
 
+    def saveSettings(self):
+        grey = False
+        inv = False
+        roi = False
+        if self.cb_grey.isChecked():
+            grey = True
+        if self.cb_inv.isChecked():
+            inv = True
+        if self.cb_roi.isChecked():
+            roi = True
+        properties = {'grey': grey, 'inverted': inv, 'roi': roi, 'scale': self.scale.value()}
+        self.tools.saveSettings(properties, self.loaded_classes, self.object_index, self.applied_filters,
+                                self.contour_widget, self.combbox_detector.currentIndex())
+
+
+    def loadSettings(self):
+        self.tools.loadSettings()
+        self.loaded_classes = self.tools.classes
+        self.object_index = self.tools.obj
+        self.applied_filters = self.tools.filters
+        self.contour_widget = self.tools.contour_widget
+        self.detector_area.setWidget(self.contour_widget)
+
+        try:
+            if self.tools.properties["grey"]:
+                self.cb_grey.setChecked(True)
+            if self.tools.properties["roi"]:
+                self.cb_roi.setChecked(True)
+            if self.tools.properties["inverted"]:
+                self.cb_inv.setChecked(True)
+        except Exception, e:
+            pass
+
+        try:
+            self.filter_area.setWidget(self.loaded_classes[0])
+            self.setList()
+        except Exception, e:
+            # no filter
+            pass
+        try:
+            self.updateImage()
+        except Exception, e:
+            # no image
+            pass
+
 def main():
 
     app = QtGui.QApplication(sys.argv)
@@ -348,3 +401,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
