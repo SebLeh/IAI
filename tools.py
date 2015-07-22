@@ -32,10 +32,13 @@ class Tools():
             print(e)
             print("No file selected?")
 
-    def loadSettings(self):
-        dialog = QtGui.QFileDialog()
-        filename = dialog.getOpenFileName(dialog, u'Load Settings', absDirPath + '/settings', 'Python Object Files (*.pobj)')
-        str_filename = str(filename)
+    def loadSettings(self, default=False):
+        if default:
+            str_filename = absDirPath + '/settings/default/default.pobj'
+        else:
+            dialog = QtGui.QFileDialog()
+            filename = dialog.getOpenFileName(dialog, u'Load Settings', absDirPath + '/settings', 'Python Object Files (*.pobj)')
+            str_filename = str(filename)
         file = open(str_filename, 'r')
         data = pickle.load(file)
         classes = data.get("classes", [])

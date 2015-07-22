@@ -25,7 +25,13 @@ class Image():
                 ### current filter was removed, continue with next
                 ### should not occur; all lists are cleared properly
                 continue
-            index = applied_filters.index(object_no)
+
+            index = 0
+            for j in xrange(loaded_classes.__len__()):
+                if loaded_classes[j].num == object_no:
+                    index = j
+
+            #index = applied_filters.index(object_no)
 
             if object_no == '0':  #threshold simple
                 # set image to greyscale if not already applied

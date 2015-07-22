@@ -67,6 +67,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         self.connect(self.combbox_detector, QtCore.SIGNAL('currentIndexChanged(int)'), self.setDetector)
         self.connect(self.actionSave_Settings, QtCore.SIGNAL('triggered()'), self.saveSettings)
         self.connect(self.actionLoad_settings, QtCore.SIGNAL('triggered()'), self.loadSettings)
+        self.connect(self.actionRestore_Default, QtCore.SIGNAL('triggered()'), self.loadDefault)
 
         self.sortList.itemPressed.connect(self.listClick)
         self.sortList.installEventFilter(self)
@@ -310,6 +311,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     def itemDoubleClicked(self):
         index = self.object_index[self.sortList.currentRow()]
         obj_no = self.applied_filters[index]
+        index = 0
+        for j in xrange(self.loaded_classes.__len__()):
+            if self.loaded_classes[j].num == obj_no:
+                index = j
         tempWidget = GenerateWidget(obj_no, 'filter')
         tempWidget.recent_values = self.loaded_classes[index].recent_values
         tempWidget.set()
@@ -390,6 +395,37 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         except Exception, e:
             # no image
             pass
+
+    def loadDefault(self):
+        self.tools.loadSettings(True)
+        self.loaded_classes = self.tools.classes
+        self.object_index = self.tools.obj
+        self.applied_filters = self.tools.filters
+        self.contour_widget = self.tools.contour_widget
+        self.detector_area.setWidget(self.contour_widget)
+
+        try:
+            if self.tools.properties["grey"]:
+                self.cb_grey.setChecked(True)
+            if self.tools.properties["roi"]:
+                self.cb_roi.setChecked(True)
+            if self.tools.properties["inverted"]:
+                self.cb_inv.setChecked(True)
+        except Exception, e:
+            pass
+
+        try:
+            self.filter_area.setWidget(self.loaded_classes[0])
+            self.setList()
+        except Exception, e:
+            # no filter
+            pass
+        try:
+            self.updateImage()
+        except Exception, e:
+            # no image
+            pass
+
 
 def main():
 
